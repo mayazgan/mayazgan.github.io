@@ -21,97 +21,99 @@
         body {
             background-color: var(--bg);
             color: var(--text-main);
-            font-family: 'Segoe UI', system-ui, sans-serif;
+            font-family: 'Inter', system-ui, sans-serif;
             margin: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            overflow-x: hidden;
-            /* Friv tarzı arka plan dokusu */
             background-image: radial-gradient(#1e293b 0.5px, transparent 0.5px);
-            background-size: 24px 24px;
+            background-size: 30px 30px;
         }
 
         .header {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
         }
 
         .header h1 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             font-weight: 900;
-            letter-spacing: -1px;
             background: linear-gradient(to right, #38bdf8, #818cf8);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin: 0;
         }
 
+        /* Kutucukları Büyüttüğümüz Alan */
         .friv-container {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
-            max-width: 520px;
-            padding: 20px;
+            /* Kutuları 100px'den 115px civarına çektik */
+            grid-template-columns: repeat(4, 115px); 
+            gap: 15px; /* Boşluğu da 2px artırdık */
+            justify-content: center;
             perspective: 1000px;
         }
 
         .friv-box {
-            aspect-ratio: 1 / 1;
+            width: 115px;
+            height: 115px;
             background: rgba(30, 41, 59, 0.7);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 14px;
+            border: 2px solid rgba(255, 255, 255, 0.05);
+            border-radius: 18px; /* Daha yuvarlak, daha premium */
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-decoration: none;
             transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-            position: relative;
         }
 
-        /* Her kutuya farklı bir parıltı rengi */
-        .friv-box i { font-size: 1.6rem; margin-bottom: 6px; transition: 0.3s; }
-        .b-cyan:hover { border-color: var(--cyan); box-shadow: 0 0 20px var(--cyan); }
-        .b-emerald:hover { border-color: var(--emerald); box-shadow: 0 0 20px var(--emerald); }
-        .b-amber:hover { border-color: var(--amber); box-shadow: 0 0 20px var(--amber); }
-        .b-rose:hover { border-color: var(--rose); box-shadow: 0 0 20px var(--rose); }
-        .b-violet:hover { border-color: var(--violet); box-shadow: 0 0 20px var(--violet); }
+        .friv-box i { 
+            font-size: 1.8rem; /* İkonu da orantılı büyüttük */
+            margin-bottom: 8px; 
+            transition: 0.3s; 
+        }
+
+        /* Renk Efektleri */
+        .b-cyan:hover { border-color: var(--cyan); box-shadow: 0 0 25px var(--cyan); }
+        .b-emerald:hover { border-color: var(--emerald); box-shadow: 0 0 25px var(--emerald); }
+        .b-amber:hover { border-color: var(--amber); box-shadow: 0 0 25px var(--amber); }
+        .b-rose:hover { border-color: var(--rose); box-shadow: 0 0 25px var(--rose); }
+        .b-violet:hover { border-color: var(--violet); box-shadow: 0 0 25px var(--violet); }
 
         .friv-box span {
-            font-size: 0.6rem;
+            font-size: 0.7rem;
             font-weight: 800;
             text-transform: uppercase;
             color: var(--text-dim);
-            letter-spacing: 0.5px;
         }
 
         .friv-box:hover {
-            transform: scale(1.15) rotate(2deg);
+            transform: scale(1.12) translateY(-5px);
             background: var(--box-bg);
             z-index: 10;
         }
 
-        .friv-box:hover i { transform: scale(1.2); color: #fff !important; }
+        .friv-box:hover i { transform: scale(1.1); color: #fff !important; }
         .friv-box:hover span { color: #fff; }
 
-        /* Boş Kutular */
         .empty { opacity: 0.1; cursor: default; }
 
-        /* Mobil Optimizasyon */
-        @media (max-width: 480px) {
-            .friv-container { grid-template-columns: repeat(3, 1fr); gap: 10px; }
-            .header h1 { font-size: 1.8rem; }
+        @media (max-width: 520px) {
+            .friv-container { 
+                grid-template-columns: repeat(3, 105px); /* Mobilde biraz daha kompakt */
+                gap: 10px; 
+            }
+            .friv-box { width: 105px; height: 105px; }
         }
 
         footer {
-            margin-top: 40px;
+            margin-top: 50px;
             font-size: 0.8rem;
             color: var(--text-dim);
-            font-weight: 500;
         }
     </style>
 </head>
@@ -119,7 +121,7 @@
 
     <header class="header">
         <h1>MAYAZGAN</h1>
-        <p style="color: var(--text-dim); font-size: 0.9rem; margin-top: 5px;">Diyanet Personel Dijital Portalı</p>
+        <p style="color: var(--text-dim); font-size: 1rem; margin-top: 5px;">Dijital Personel Portalı</p>
     </header>
 
     <div class="friv-container">
@@ -167,4 +169,3 @@
 
 </body>
 </html>
-
