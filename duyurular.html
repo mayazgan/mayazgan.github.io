@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Duyuru Merkezi | MAYAZGAN</title>
+    <title>İK Özel Akış | MAYAZGAN</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -23,113 +23,100 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-height: 100vh;
             background-image: radial-gradient(#1e293b 0.5px, transparent 0.5px);
             background-size: 30px 30px;
         }
 
-        .container { width: 100%; max-width: 600px; }
+        .container { width: 100%; max-width: 700px; }
 
-        .nav-bar { display: flex; align-items: center; margin-bottom: 30px; }
-        .back-btn { color: var(--text-dim); text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
-        .back-btn:hover { color: var(--accent); }
+        .header-box {
+            background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%);
+            padding: 25px;
+            border-radius: 24px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(14, 165, 233, 0.3);
+        }
 
-        .header-section { text-align: center; margin-bottom: 40px; }
-        .header-section h1 { font-size: 1.8rem; margin: 0; background: linear-gradient(to right, #38bdf8, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .header-box h1 { margin: 0; font-size: 1.5rem; font-weight: 800; }
+        .header-box p { margin: 10px 0 0; font-size: 0.85rem; opacity: 0.9; }
 
-        /* Duyuru Kartları */
-        .ik-menu { display: flex; flex-direction: column; gap: 15px; }
-        
+        .news-list { display: flex; flex-direction: column; gap: 12px; }
+
+        /* SharePoint Tarzı Veriyi Şık Kartlara Dönüştürme */
         .ik-card {
             background: rgba(30, 41, 59, 0.7);
             backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.05);
-            padding: 20px;
-            border-radius: 20px;
-            text-decoration: none;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 18px;
+            border-radius: 18px;
             display: flex;
             align-items: center;
-            gap: 18px;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            gap: 15px;
+            transition: 0.3s;
+            text-decoration: none;
         }
 
         .ik-card:hover {
-            transform: scale(1.03);
             border-color: var(--accent);
+            transform: scale(1.02);
             background: var(--card-bg);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
         }
 
-        .icon-wrap {
-            width: 55px; height: 55px;
+        .status-icon {
+            width: 45px;
+            height: 45px;
             background: rgba(56, 189, 248, 0.1);
-            border-radius: 15px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.4rem; color: var(--accent);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
         }
 
-        .content-wrap h2 { margin: 0; font-size: 1.1rem; color: #fff; }
-        .content-wrap p { margin: 5px 0 0; font-size: 0.85rem; color: var(--text-dim); }
+        .content h3 { margin: 0; font-size: 1rem; color: var(--text-main); line-height: 1.4; }
+        .content span { font-size: 0.75rem; color: var(--text-dim); display: block; margin-top: 5px; }
 
-        .go-icon { margin-left: auto; color: var(--text-dim); font-size: 1.1rem; }
-        .ik-card:hover .go-icon { color: var(--accent); transform: translateX(5px); }
-
-        footer { margin-top: auto; padding: 40px 0; color: var(--text-dim); font-size: 0.8rem; text-align: center; }
+        .btn-update {
+            margin-top: 30px;
+            background: transparent;
+            border: 1px dashed var(--text-dim);
+            color: var(--text-dim);
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <div class="nav-bar">
-            <a href="index.html" class="back-btn"><i class="fas fa-chevron-left"></i> Ana Menü</a>
+        <div class="header-box">
+            <h1>İnsan Kaynakları Paneli</h1>
+            <p><i class="fas fa-sync-alt"></i> Dosya tabanlı veri işleme aktif.</p>
         </div>
 
-        <div class="header-section">
-            <h1>İK Duyuru Merkezi</h1>
-            <p style="color: var(--text-dim); margin-top: 10px;">Resmi İK duyuru ve işlemlerine hızlı geçiş</p>
-        </div>
-
-        <div class="ik-menu">
-            <a href="https://insankaynaklari.diyanet.gov.tr/icerikler/Duyurular" target="_blank" class="ik-card">
-                <div class="icon-wrap"><i class="fas fa-bullhorn"></i></div>
-                <div class="content-wrap">
-                    <h2>Tüm Duyurular</h2>
-                    <p>Güncel personel ilanları ve duyurular</p>
+        <div class="news-list">
+            <a href="https://insankaynaklari.diyanet.gov.tr" target="_blank" class="ik-card">
+                <div class="status-icon"><i class="fas fa-file-alt"></i></div>
+                <div class="content">
+                    <h3>2026 Yılı Muhtemel Münhal Kadrolar Listesi</h3>
+                    <span>Yüklenen Dosya Verisi</span>
                 </div>
-                <i class="fas fa-external-link-alt go-icon"></i>
             </a>
 
-            <a href="https://dibbys.diyanet.gov.tr/IKYS/Sinav" target="_blank" class="ik-card">
-                <div class="icon-wrap"><i class="fas fa-id-card"></i></div>
-                <div class="content-wrap">
-                    <h2>Sınav & Mülakat</h2>
-                    <p>Giriş belgesi ve sonuç sorgulama</p>
+            <a href="https://insankaynaklari.diyanet.gov.tr" target="_blank" class="ik-card">
+                <div class="status-icon"><i class="fas fa-user-check"></i></div>
+                <div class="content">
+                    <h3>Sınav Giriş Belgeleri ve Uygulama Esasları</h3>
+                    <span>Güncel Kayıt</span>
                 </div>
-                <i class="fas fa-external-link-alt go-icon"></i>
-            </a>
-
-            <a href="https://insankaynaklari.diyanet.gov.tr/kategori/atama-ve-yer-degistirme" target="_blank" class="ik-card">
-                <div class="icon-wrap"><i class="fas fa-map-marker-alt"></i></div>
-                <div class="content-wrap">
-                    <h2>Atama & Nakil</h2>
-                    <p>Münhal kadrolar ve tayin duyuruları</p>
-                </div>
-                <i class="fas fa-external-link-alt go-icon"></i>
-            </a>
-
-            <a href="https://hukukmusavirligi.diyanet.gov.tr" target="_blank" class="ik-card">
-                <div class="icon-wrap"><i class="fas fa-gavel"></i></div>
-                <div class="content-wrap">
-                    <h2>Mevzuat & Hukuk</h2>
-                    <p>Yönetmelikler ve resmi kararlar</p>
-                </div>
-                <i class="fas fa-external-link-alt go-icon"></i>
             </a>
         </div>
 
-        <footer>
-            &copy; 2026 MAYAZGAN • Kamu Personeli Hızlı Erişim Paneli
-        </footer>
+        <button class="btn-update" onclick="alert('Veri senkronizasyonu için ana sayfadaki canlı akışı kullanın.')">
+            <i class="fas fa-code"></i> Veri Kaynağı: SharePoint HTML
+        </button>
     </div>
 
 </body>
