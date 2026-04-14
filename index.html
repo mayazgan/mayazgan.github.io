@@ -1,10 +1,160 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="4N0B4nybXZrAIvekSlhX5ngcIxwxUX7tkbxAHky9omc" />
-  </head>
+    <title>MAYAZGAN | Personel ve Mevzuat Portalı</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --accent: #38bdf8;
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            flex-grow: 1;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        header p {
+            color: var(--text-dim);
+            font-size: 1.1rem;
+        }
+
+        /* Ana Menü Izgarası */
+        .portal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .portal-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 30px;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .portal-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+
+        .icon-box {
+            width: 70px;
+            height: 70px;
+            background: rgba(56, 189, 248, 0.1);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 2rem;
+            color: var(--accent);
+        }
+
+        .portal-card h2 {
+            font-size: 1.4rem;
+            margin: 10px 0;
+            color: var(--text-main);
+        }
+
+        .portal-card p {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .status-badge {
+            margin-top: 15px;
+            padding: 5px 12px;
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--accent);
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
 <body>
-    <h1>Mayazgan Projeler</h1>
-    <p>Projelerime alt klasörlerden ulaşabilirsiniz.</p>
+
+    <div class="container">
+        <header>
+            <h1>MAYAZGAN PORTAL</h1>
+            <p>Diyanet İşleri Başkanlığı Personeli İçin Dijital Çözümler</p>
+        </header>
+
+        <main class="portal-grid">
+            <a href="/muktesep-hesaplama" class="portal-card">
+                <div class="icon-box"><i class="fas fa-calculator"></i></div>
+                <h2>Müktesep Hesaplama</h2>
+                <p>MBSTS, Hizmet Puanı ve PDF'den Otomatik Puan Okuma Sistemi.</p>
+                <div class="status-badge">Aktif Kullanımda</div>
+            </a>
+
+            <a href="#" class="portal-card" style="opacity: 0.7; cursor: default;">
+                <div class="icon-box"><i class="fas fa-chart-line"></i></div>
+                <h2>Ek-6 Hesaplayıcı</h2>
+                <p>Atama ve yer değiştirme yönetmeliğine uygun Ek-6 puanlama robotu.</p>
+                <div class="status-badge" style="background: rgba(148, 163, 184, 0.2); color: #94a3b8;">Yakında</div>
+            </a>
+
+            <a href="#" class="portal-card" style="opacity: 0.7; cursor: default;">
+                <div class="icon-box"><i class="fas fa-gavel"></i></div>
+                <h2>Mevzuat Bankası</h2>
+                <p>Sınavlar, terfiler ve yer değiştirmelerle ilgili güncel yönetmelikler.</p>
+                <div class="status-badge" style="background: rgba(148, 163, 184, 0.2); color: #94a3b8;">Hazırlanıyor</div>
+            </a>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 MAYAZGAN • Tüm Hakları Saklıdır.</p>
+    </footer>
+
 </body>
-</html>
+  </html>
+  
