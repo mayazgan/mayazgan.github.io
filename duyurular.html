@@ -3,16 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Canlı Duyurular | MAYAZGAN</title>
+    <title>Duyuru Merkezi | MAYAZGAN</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --bg: #020617;
             --card-bg: #1e293b;
+            --accent: #38bdf8;
             --text-main: #f1f5f9;
             --text-dim: #94a3b8;
-            --accent: #38bdf8;
-            --live-red: #ef4444;
         }
 
         body {
@@ -24,118 +23,114 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            min-height: 100vh;
             background-image: radial-gradient(#1e293b 0.5px, transparent 0.5px);
             background-size: 30px 30px;
         }
 
-        .container { width: 100%; max-width: 700px; }
+        .container { width: 100%; max-width: 600px; }
 
-        /* Üst Başlık ve Geri Butonu */
-        .nav-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
-        .back-btn { color: var(--text-dim); text-decoration: none; font-size: 0.9rem; }
-        .live-tag { color: var(--live-red); font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px; }
-        .dot { width: 8px; height: 8px; background: var(--live-red); border-radius: 50%; animation: pulse 1.5s infinite; }
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+        .nav-bar { display: flex; align-items: center; margin-bottom: 30px; }
+        .back-btn { color: var(--text-dim); text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
+        .back-btn:hover { color: var(--accent); }
 
-        /* Sabit Kritik Linkler (İK ve DİBBYS) */
-        .fixed-links { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 30px; }
-        .fixed-card {
-            background: linear-gradient(135deg, #1e293b, #0f172a);
-            border: 2px solid var(--accent);
-            padding: 15px;
-            border-radius: 15px;
+        .header-section { text-align: center; margin-bottom: 40px; }
+        .header-section h1 { font-size: 1.8rem; margin: 0; background: linear-gradient(to right, #38bdf8, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+        /* Duyuru Kartları */
+        .ik-menu { display: flex; flex-direction: column; gap: 15px; }
+        
+        .ik-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 20px;
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 12px;
-            transition: 0.3s;
+            gap: 18px;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        .fixed-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(56, 189, 248, 0.2); }
-        .fixed-card i { color: var(--accent); font-size: 1.5rem; }
-        .fixed-card span { color: #fff; font-weight: bold; font-size: 0.9rem; }
 
-        /* Otomatik Haber Listesi */
-        .news-title { font-size: 1.1rem; color: var(--accent); margin-bottom: 15px; display: block; border-left: 3px solid var(--accent); padding-left: 10px; }
-        
-        .news-item {
-            background: rgba(30, 41, 59, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            padding: 15px;
-            margin-bottom: 10px;
-            text-decoration: none;
-            display: block;
-            transition: 0.2s;
+        .ik-card:hover {
+            transform: scale(1.03);
+            border-color: var(--accent);
+            background: var(--card-bg);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
         }
-        .news-item:hover { background: var(--card-bg); border-color: var(--accent); }
-        .news-item h3 { margin: 0; font-size: 0.95rem; color: var(--text-main); line-height: 1.4; }
-        .news-item small { color: var(--text-dim); font-size: 0.75rem; margin-top: 5px; display: block; }
 
-        #news-loader { text-align: center; color: var(--text-dim); padding: 20px; }
+        .icon-wrap {
+            width: 55px; height: 55px;
+            background: rgba(56, 189, 248, 0.1);
+            border-radius: 15px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem; color: var(--accent);
+        }
+
+        .content-wrap h2 { margin: 0; font-size: 1.1rem; color: #fff; }
+        .content-wrap p { margin: 5px 0 0; font-size: 0.85rem; color: var(--text-dim); }
+
+        .go-icon { margin-left: auto; color: var(--text-dim); font-size: 1.1rem; }
+        .ik-card:hover .go-icon { color: var(--accent); transform: translateX(5px); }
+
+        footer { margin-top: auto; padding: 40px 0; color: var(--text-dim); font-size: 0.8rem; text-align: center; }
     </style>
 </head>
 <body>
 
     <div class="container">
         <div class="nav-bar">
-            <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Ana Sayfa</a>
-            <div class="live-tag"><div class="dot"></div> CANLI AKIŞ</div>
+            <a href="index.html" class="back-btn"><i class="fas fa-chevron-left"></i> Ana Menü</a>
         </div>
 
-        <div class="fixed-links">
-            <a href="https://insankaynaklari.diyanet.gov.tr/icerikler/Duyurular" target="_blank" class="fixed-card">
-                <i class="fas fa-user-shield"></i>
-                <span>İK Duyuruları</span>
+        <div class="header-section">
+            <h1>İK Duyuru Merkezi</h1>
+            <p style="color: var(--text-dim); margin-top: 10px;">Resmi İK duyuru ve işlemlerine hızlı geçiş</p>
+        </div>
+
+        <div class="ik-menu">
+            <a href="https://insankaynaklari.diyanet.gov.tr/icerikler/Duyurular" target="_blank" class="ik-card">
+                <div class="icon-wrap"><i class="fas fa-bullhorn"></i></div>
+                <div class="content-wrap">
+                    <h2>Tüm Duyurular</h2>
+                    <p>Güncel personel ilanları ve duyurular</p>
+                </div>
+                <i class="fas fa-external-link-alt go-icon"></i>
             </a>
-            <a href="https://dibbys.diyanet.gov.tr" target="_blank" class="fixed-card">
-                <i class="fas fa-id-badge"></i>
-                <span>DİBBYS Giriş</span>
+
+            <a href="https://dibbys.diyanet.gov.tr/IKYS/Sinav" target="_blank" class="ik-card">
+                <div class="icon-wrap"><i class="fas fa-id-card"></i></div>
+                <div class="content-wrap">
+                    <h2>Sınav & Mülakat</h2>
+                    <p>Giriş belgesi ve sonuç sorgulama</p>
+                </div>
+                <i class="fas fa-external-link-alt go-icon"></i>
+            </a>
+
+            <a href="https://insankaynaklari.diyanet.gov.tr/kategori/atama-ve-yer-degistirme" target="_blank" class="ik-card">
+                <div class="icon-wrap"><i class="fas fa-map-marker-alt"></i></div>
+                <div class="content-wrap">
+                    <h2>Atama & Nakil</h2>
+                    <p>Münhal kadrolar ve tayin duyuruları</p>
+                </div>
+                <i class="fas fa-external-link-alt go-icon"></i>
+            </a>
+
+            <a href="https://hukukmusavirligi.diyanet.gov.tr" target="_blank" class="ik-card">
+                <div class="icon-wrap"><i class="fas fa-gavel"></i></div>
+                <div class="content-wrap">
+                    <h2>Mevzuat & Hukuk</h2>
+                    <p>Yönetmelikler ve resmi kararlar</p>
+                </div>
+                <i class="fas fa-external-link-alt go-icon"></i>
             </a>
         </div>
 
-        <span class="news-title">Resmi Duyurular (Otomatik)</span>
-        
-        <div id="news-feed">
-            <div id="news-loader"><i class="fas fa-spinner fa-spin"></i> Veriler çekiliyor...</div>
-        </div>
+        <footer>
+            &copy; 2026 MAYAZGAN • Kamu Personeli Hızlı Erişim Paneli
+        </footer>
     </div>
-
-    <script>
-        async function fetchNews() {
-            const feed = document.getElementById('news-feed');
-            const rssUrl = 'https://www.diyanet.gov.tr/tr-tr/Duyuru/Rss';
-            const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(rssUrl)}`;
-
-            try {
-                const response = await fetch(proxyUrl);
-                const data = await response.json();
-                const parser = new DOMParser();
-                const xmlDoc = parser.parseFromString(data.contents, "text/xml");
-                const items = xmlDoc.querySelectorAll("item");
-
-                if (items.length > 0) {
-                    feed.innerHTML = '';
-                    items.forEach((item, index) => {
-                        if(index < 8) { // Sadece son 8 haberi göster
-                            const title = item.querySelector("title").textContent;
-                            const link = item.querySelector("link").textContent;
-                            const date = item.querySelector("pubDate") ? item.querySelector("pubDate").textContent.split(' 00:00')[0] : "";
-                            
-                            feed.innerHTML += `
-                                <a href="${link}" target="_blank" class="news-item">
-                                    <h3>${title}</h3>
-                                    <small><i class="far fa-calendar-alt"></i> ${date}</small>
-                                </a>
-                            `;
-                        }
-                    });
-                }
-            } catch (e) {
-                feed.innerHTML = '<p style="color:var(--text-dim); text-align:center;">Diyanet haber akışına şu an ulaşılamıyor. Lütfen yukarıdaki butonları kullanın.</p>';
-            }
-        }
-        fetchNews();
-    </script>
 
 </body>
 </html>
