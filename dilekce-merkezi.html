@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dilekçe Hazırlama | MAYAZGAN</title>
+    <title>Dilekçe Hazırlama Merkezi | MAYAZGAN</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -13,7 +13,7 @@
             --text-main: #f1f5f9;
         }
 
-        /* Ekran Tasarımı */
+        /* --- ARAYÜZ STİLLERİ (Ekranda görünen kısım) --- */
         body {
             background-color: var(--bg);
             color: var(--text-main);
@@ -22,45 +22,78 @@
             display: flex; flex-direction: column; align-items: center;
         }
 
-        .no-print { width: 100%; max-width: 800px; }
-        .back-btn { color: #94a3b8; text-decoration: none; margin-bottom: 20px; display: inline-block; }
+        .no-print { width: 100%; max-width: 900px; }
+        
+        .form-container {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 24px;
+            border: 1px solid rgba(255,255,255,0.05);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
 
         .form-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            background: var(--card-bg);
-            padding: 25px;
-            border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.1);
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
         }
 
         .full-width { grid-column: span 2; }
         
-        label { display: block; font-size: 0.8rem; color: #94a3b8; margin-bottom: 5px; }
+        label { display: block; font-size: 0.85rem; color: #94a3b8; margin-bottom: 8px; font-weight: 500; }
+        
         input, textarea, select {
-            width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #334155;
-            background: #0f172a; color: white; box-sizing: border-box;
+            width: 100%; padding: 14px; border-radius: 12px; border: 1px solid #334155;
+            background: #0f172a; color: white; box-sizing: border-box; font-size: 1rem;
+            outline: none; transition: 0.3s;
         }
+
+        input:focus, textarea:focus { border-color: var(--accent); }
 
         .btn-print {
-            grid-column: span 2; padding: 15px; background: var(--accent);
-            border: none; border-radius: 12px; color: white; font-weight: bold;
+            grid-column: span 2; padding: 18px; background: var(--accent);
+            border: none; border-radius: 14px; color: white; font-weight: bold;
             cursor: pointer; font-size: 1.1rem; margin-top: 10px;
+            display: flex; align-items: center; justify-content: center; gap: 10px;
         }
 
-        /* YAZDIRMA AYARLARI (A4 Kağıt Standartları) */
+        .btn-print:hover { filter: brightness(1.1); transform: translateY(-2px); }
+
+        /* --- RESMİ DİLEKÇE FORMATI (Yazıcı çıktısı) --- */
         #dilekce-cikti {
             display: none; /* Sadece yazdırırken görünecek */
             background: white;
             color: black;
             width: 210mm;
             min-height: 297mm;
-            padding: 25mm 20mm 20mm 30mm; /* Standart resmi boşluklar */
+            padding: 25mm 20mm 20mm 30mm; /* Resmi dosyalama boşlukları */
             box-sizing: border-box;
-            line-height: 1.5;
             font-family: "Times New Roman", Times, serif;
             font-size: 12pt;
+            line-height: 1.5;
+            position: relative;
+        }
+
+        .out-tarih { text-align: right; margin-bottom: 30px; }
+        .out-makam { text-align: center; font-weight: bold; margin-bottom: 40px; text-transform: uppercase; }
+        .out-metin { text-indent: 1.5cm; text-align: justify; margin-bottom: 50px; }
+        
+        .out-imza-alani { float: right; text-align: center; width: 6cm; }
+        .out-adsoyad { font-weight: bold; text-transform: uppercase; }
+        
+        .out-ekler { margin-top: 50px; font-size: 10pt; font-weight: bold; clear: both; }
+        
+        /* Alt Bilgi Alanı (İletişim ve Kimlik Bilgileri Ayrılmış) */
+        .out-footer {
+            position: absolute;
+            bottom: 25mm;
+            left: 30mm;
+            right: 20mm;
+            border-top: 1px dashed #000;
+            padding-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 10pt;
         }
 
         @media print {
@@ -69,111 +102,142 @@
             #dilekce-cikti { display: block !important; }
             @page { size: A4; margin: 0; }
         }
-
-        /* Dilekçe Elemanları */
-        .header-date { text-align: right; margin-bottom: 40px; }
-        .target-authority { text-align: center; font-weight: bold; margin-bottom: 50px; text-transform: uppercase; }
-        .body-text { text-indent: 1.5cm; text-align: justify; margin-bottom: 50px; }
-        .signature-block { float: right; text-align: center; width: 250px; }
-        .footer-info { clear: both; margin-top: 100px; font-size: 10pt; border-top: 1px solid #000; padding-top: 10px; }
     </style>
 </head>
 <body>
 
     <div class="no-print">
-        <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Geri Dön</a>
-        
-        <div class="form-grid">
-            <div class="full-width">
-                <h2 style="margin-top:0; color:var(--accent);">Dilekçe Robotu</h2>
-            </div>
+        <a href="index.html" style="color:#94a3b8; text-decoration:none; display:inline-block; margin-bottom:20px;">
+            <i class="fas fa-arrow-left"></i> Ana Sayfaya Dön
+        </a>
 
-            <div class="full-width">
-                <label>Şablon Seçin</label>
-                <select id="sablon" onchange="sablonUygula()">
-                    <option value="ozel">Özel Dilekçe (Kendim Yazacağım)</option>
-                    <option value="tayin">Becayiş / Nakil Talebi</option>
-                    <option value="izin">Yıllık İzin Formu</option>
-                    <option value="mazeret">Mazeret İzni Talebi</option>
-                </select>
-            </div>
+        <div class="form-container">
+            <h2 style="margin-top:0; color:var(--accent);"><i class="fas fa-file-alt"></i> Dilekçe Oluşturucu</h2>
+            
+            <div class="form-grid">
+                <div class="full-width">
+                    <label>Hızlı Şablon</label>
+                    <select id="sablon" onchange="sablonSec()">
+                        <option value="">-- Şablon Seçebilirsiniz --</option>
+                        <option value="tayin">Atama / Nakil Talebi</option>
+                        <option value="izin">Yıllık İzin Talebi</option>
+                        <option value="mazeret">Mazeret İzni Talebi</option>
+                    </select>
+                </div>
 
-            <div class="full-width">
-                <label>Gideceği Makam (Örn: SİVAS İL MÜFTÜLÜĞÜNE)</label>
-                <input type="text" id="makam" placeholder="SİVAS İL MÜFTÜLÜĞÜNE">
-            </div>
+                <div class="full-width">
+                    <label>Gideceği Makam</label>
+                    <input type="text" id="makam" placeholder="Örn: SİVAS İL MÜFTÜLÜĞÜNE">
+                </div>
 
-            <div class="full-width">
-                <label>Dilekçe Konusu / Metni</label>
-                <textarea id="metin" rows="10" placeholder="Talebinizi detaylıca yazın..."></textarea>
-            </div>
+                <div class="full-width">
+                    <label>Dilekçe Metni</label>
+                    <textarea id="metin" rows="8"></textarea>
+                </div>
 
-            <div>
-                <label>Ad Soyad</label>
-                <input type="text" id="adsoyad">
-            </div>
+                <div>
+                    <label>Ad Soyad</label>
+                    <input type="text" id="adsoyad">
+                </div>
 
-            <div>
-                <label>Sicil / T.C. No</label>
-                <input type="text" id="sicil">
-            </div>
+                <div>
+                    <label>T.C. Kimlik No</label>
+                    <input type="text" id="tckimlik" maxlength="11">
+                </div>
 
-            <div class="full-width">
-                <label>Adres ve İletişim Bilgileri</label>
-                <input type="text" id="adres" placeholder="Adres / Telefon">
-            </div>
+                <div>
+                    <label>Kurum Sicil No</label>
+                    <input type="text" id="sicil">
+                </div>
 
-            <button class="btn-print" onclick="hazirlaVeYazdir()">
-                <i class="fas fa-print"></i> DİLEKÇEYİ OLUŞTUR VE YAZDIR
-            </button>
+                <div>
+                    <label>Telefon No</label>
+                    <input type="text" id="telefon">
+                </div>
+
+                <div class="full-width">
+                    <label>İkamet Adresi</label>
+                    <input type="text" id="adres">
+                </div>
+
+                <div class="full-width">
+                    <label>Ekler (Opsiyonel)</label>
+                    <textarea id="ekler" rows="2" placeholder="Örn: 1- Sağlık Raporu"></textarea>
+                </div>
+
+                <button class="btn-print" onclick="yazdir()">
+                    <i class="fas fa-print"></i> OLUŞTUR VE YAZDIR
+                </button>
+            </div>
         </div>
     </div>
 
     <div id="dilekce-cikti">
-        <div class="header-date" id="c-tarih"></div>
-        <div class="target-authority" id="c-makam"></div>
-        <div class="body-text" id="c-metin"></div>
+        <div class="out-tarih" id="p-tarih"></div>
+        <div class="out-makam" id="p-makam"></div>
+        <div class="out-metin" id="p-metin"></div>
         
-        <div class="signature-block">
-            <div id="c-adsoyad" style="font-weight: bold;"></div>
-            <div id="c-sicil"></div>
+        <div class="out-imza-alani">
+            <div class="out-adsoyad" id="p-adsoyad"></div>
+            <div id="p-sicil-imza" style="font-size: 11pt;"></div>
             <br><br><br>
-            <span>(İmza)</span>
+            <div>(İmza)</div>
         </div>
 
-        <div class="footer-info">
-            <strong>ADRES:</strong> <span id="c-adres"></span>
+        <div class="out-ekler" id="p-ekler-alan" style="display:none;">
+            EKLER:<br>
+            <span id="p-ekler" style="font-weight: normal; font-size: 11pt; white-space: pre-line;"></span>
+        </div>
+
+        <div class="out-footer">
+            <div style="width: 60%;">
+                <strong>ADRES:</strong> <span id="p-adres"></span><br>
+                <strong>TEL:</strong> <span id="p-telefon"></span>
+            </div>
+            <div style="width: 35%; text-align: right;">
+                <strong>T.C.:</strong> <span id="p-tckimlik"></span><br>
+                <strong>SİCİL:</strong> <span id="p-sicil-alt"></span>
+            </div>
         </div>
     </div>
 
     <script>
-        function sablonUygula() {
-            const sablon = document.getElementById('sablon').value;
-            const metin = document.getElementById('metin');
-            
-            const list = {
-                tayin: "Halen Sivas ili ... ilçesi ... camiinde ... unvanı ile görev yapmaktayım. 657 Sayılı Devlet Memurları Kanunu ve Atama ve Yer Değiştirme Yönetmeliği hükümleri çerçevesinde, ekli mazeret belgelerime istinaden Sivas İl Merkezine naklen atanma talebimin değerlendirilmesini arz ederim.",
-                izin: "2026 yılına ait yıllık iznimden ... gününü ... tarihinden itibaren kullanmak istiyorum. İzin süresince bulunacağım adres aşağıda belirtilmiştir. Gereğini bilgilerinize arz ederim.",
-                mazeret: "Ekte sunduğum mazeretim sebebiyle, ... tarihleri arasında ... gün mazeret izni kullanmak istiyorum. Bilgilerinize ve gereğine arz ederim.",
-                ozel: ""
+        function sablonSec() {
+            const tip = document.getElementById('sablon').value;
+            const m = document.getElementById('metin');
+            const s = {
+                tayin: "Sivas ili ... ilçesi ... camiinde ... unvanı ile görev yapmaktayım. Şahsi mazeretime binaen, durumumun Atama ve Yer Değiştirme Yönetmeliği hükümleri çerçevesinde değerlendirilerek Sivas İl Merkezine naklen atanma talebimin kabulünü arz ederim.",
+                izin: "657 Sayılı Devlet Memurları Kanunu'nun ilgili maddesi uyarınca, 2026 yılına ait yıllık iznimden ... iş gününü ... tarihinden itibaren kullanmak istiyorum. Gereğini bilgilerinize arz ederim.",
+                mazeret: "Ekte sunduğum mazeretim nedeniyle, ... tarihleri arasında mazeret izni kullanmak istiyorum. Bilgilerinize ve gereğine arz ederim."
             };
-            
-            if(list[sablon] !== undefined) metin.value = list[sablon];
+            if(s[tip]) m.value = s[tip];
         }
 
-        function hazirlaVeYazdir() {
-            // Form verilerini A4 alanına aktar
-            document.getElementById('c-tarih').innerText = new Date().toLocaleDateString('tr-TR');
-            document.getElementById('c-makam').innerText = document.getElementById('makam').value;
-            document.getElementById('c-metin').innerText = document.getElementById('metin').value;
-            document.getElementById('c-adsoyad').innerText = document.getElementById('adsoyad').value;
-            document.getElementById('c-sicil').innerText = "Sicil No: " + document.getElementById('sicil').value;
-            document.getElementById('c-adres').innerText = document.getElementById('adres').value;
+        function yazdir() {
+            // Veri Aktarımı
+            document.getElementById('p-tarih').innerText = new Date().toLocaleDateString('tr-TR');
+            document.getElementById('p-makam').innerText = document.getElementById('makam').value;
+            document.getElementById('p-metin').innerText = document.getElementById('metin').value;
+            document.getElementById('p-adsoyad').innerText = document.getElementById('adsoyad').value;
+            document.getElementById('p-sicil-imza').innerText = "Sicil No: " + document.getElementById('sicil').value;
+            
+            // Alt Bilgi Parçalı Aktarım
+            document.getElementById('p-adres').innerText = document.getElementById('adres').value;
+            document.getElementById('p-telefon').innerText = document.getElementById('telefon').value;
+            document.getElementById('p-tckimlik').innerText = document.getElementById('tckimlik').value;
+            document.getElementById('p-sicil-alt').innerText = document.getElementById('sicil').value;
 
-            // Yazdır
+            // Ekler
+            const ekText = document.getElementById('ekler').value;
+            if(ekText.trim() !== "") {
+                document.getElementById('p-ekler-alan').style.display = "block";
+                document.getElementById('p-ekler').innerText = ekText;
+            } else {
+                document.getElementById('p-ekler-alan').style.display = "none";
+            }
+
             window.print();
         }
     </script>
-
 </body>
 </html>
