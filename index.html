@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-site-verification" content="4N0B4nybXZrAIvekSlhX5ngcIxwxUX7tkbxAHky9omc" />
-    <title>MAYAZGAN | Personel ve Mevzuat Portalı</title>
+    <title>MAYAZGAN | Dijital Portalı</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -18,22 +17,149 @@
         body {
             background-color: var(--bg);
             color: var(--text-main);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', sans-serif;
             margin: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
+            padding: 0;
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 40px 20px;
-            flex-grow: 1;
+            padding: 50px 20px;
         }
 
         header {
             text-align: center;
+            margin-bottom: 60px;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin: 0;
+            background: linear-gradient(to right, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            color: var(--text-dim);
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+
+        /* Araç Kutuları */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            padding: 30px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(56, 189, 248, 0.1);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        .card h2 {
+            margin: 0 0 10px 0;
+            font-size: 1.5rem;
+            color: var(--text-main);
+        }
+
+        .card p {
+            margin: 0;
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 0.7rem;
+            padding: 4px 10px;
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--accent);
+            border-radius: 100px;
+            font-weight: bold;
+        }
+
+        footer {
+            margin-top: 80px;
+            text-align: center;
+            color: var(--text-dim);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>MAYAZGAN PORTAL</h1>
+        <p>Kamu Personeli İçin Akıllı Asistan ve Mevzuat Araçları</p>
+    </header>
+
+    <div class="grid">
+        <a href="/muktesep-hesaplama" class="card">
+            <span class="badge">POPÜLER</span>
+            <div class="icon"><i class="fas fa-calculator"></i></div>
+            <h2>Müktesep & MBSTS</h2>
+            <p>Hizmet puanı, MBSTS ve nakil puanlarınızı otomatik PDF okuma desteğiyle saniyeler içinde hesaplayın.</p>
+        </a>
+
+        <a href="#" class="card">
+            <div class="icon"><i class="fas fa-calendar-check"></i></div>
+            <h2>Terfi ve Tarih Takibi</h2>
+            <p>Bir sonraki derece/kademe terfi tarihinizi, hizmet süresi borçlanmalarınızı ve emeklilik gün sayınızı hesaplayın.</p>
+        </a>
+
+        <a href="#" class="card">
+            <div class="icon"><i class="fas fa-graduation-cap"></i></div>
+            <h2>Sınav Duyuru & Arşiv</h2>
+            <p>Diyanet'in açtığı tüm güncel sınav duyuruları, mülakat sonuçları ve çıkmış sorular arşivi tek bir noktada.</p>
+        </a>
+
+        <a href="#" class="card">
+            <div class="icon"><i class="fas fa-file-invoice"></i></div>
+            <h2>Dilekçe & Form Bankası</h2>
+            <p>Nakil dilekçeleri, izin formları ve resmi yazışma şablonlarını içeren, düzenlenebilir döküman kütüphanesi.</p>
+        </a>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 MAYAZGAN • Tüm Hakları Saklıdır.</p>
+    </footer>
+</div>
+
+</body>
+</html>
             margin-bottom: 60px;
         }
 
