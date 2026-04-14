@@ -3,3 +3,4 @@ Allow: /
 
 Sitemap: https://mayazgan.github.io/sitemap.xml
 Sitemap: https://mayazgan.github.io/muktesep-hesaplama/sitemap.xml
+Sitemap: https://mayazgan.github.io/muktesep-hesaplama/atom.xml
