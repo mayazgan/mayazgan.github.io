@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duyurular | MAYAZGAN Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg: #020617;
+            --card-bg: #1e293b;
+            --text-main: #f1f5f9;
+            --text-dim: #64748b;
+            --accent: #38bdf8;
+            --live-red: #ef4444;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-image: radial-gradient(#1e293b 0.5px, transparent 0.5px);
+            background-size: 30px 30px;
+        }
+
+        /* Üst Navigasyon */
+        .nav-bar {
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-btn {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-btn:hover { color: var(--accent); }
+
+        .live-indicator {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: var(--live-red);
+            text-transform: uppercase;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--live-red);
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.5); opacity: 0.5; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* Duyuru Kartları */
+        .announcement-container {
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .announcement-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 20px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .announcement-card:hover {
+            transform: translateX(10px);
+            border-color: var(--accent);
+            background: var(--card-bg);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .date-box {
+            min-width: 60px;
+            text-align: center;
+            padding-right: 20px;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .date-box .day { font-size: 1.2rem; font-weight: 900; color: var(--accent); display: block; }
+        .date-box .month { font-size: 0.7rem; color: var(--text-dim); text-transform: uppercase; }
+
+        .content-box h2 {
+            margin: 0;
+            font-size: 1rem;
+            color: var(--text-main);
+            line-height: 1.4;
+        }
+
+        .content-box span {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            background: rgba(255,255,255,0.05);
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-top: 8px;
+            display: inline-block;
+        }
+
+        footer {
+            margin-top: 50px;
+            color: var(--text-dim);
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="nav-bar">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Ana Sayfa</a>
+        <div class="live-indicator">
+            <div class="dot"></div> Canlı Takip
+        </div>
+    </div>
+
+    <div class="announcement-container">
+        <a href="#" class="announcement-card">
+            <div class="date-box">
+                <span class="day">14</span>
+                <span class="month">Nis</span>
+            </div>
+            <div class="content-box">
+                <h2>2026 Yılı MBSTS Sonuçları ve Tercih İşlemleri Hakkında Bilgilendirme</h2>
+                <span>Sınav İşlemleri</span>
+            </div>
+        </a>
+
+        <a href="#" class="announcement-card">
+            <div class="date-box">
+                <span class="day">12</span>
+                <span class="month">Nis</span>
+            </div>
+            <div class="content-box">
+                <h2>Nisan Ayı Mutat Toplantısı ve Personel Nakil Sınavı Duyurusu</h2>
+                <span>Atama & Nakil</span>
+            </div>
+        </a>
+
+        <a href="#" class="announcement-card">
+            <div class="date-box">
+                <span class="day">08</span>
+                <span class="month">Nis</span>
+            </div>
+            <div class="content-box">
+                <h2>Yaz Kur'an Kursları Öğretici Eğitim Programı Tarihleri Açıklandı</h2>
+                <span>Eğitim</span>
+            </div>
+        </a>
+    </div>
+
+    <footer>
+        &copy; 2026 MAYAZGAN • Güncel Veri Merkezi
+    </footer>
+
+</body>
+</html>
