@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Oluşturucu | MAYAZGAN</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg: #020617;
+            --card-bg: #1e293b;
+            --accent: #f59e0b; /* Sarı/Turuncu tonu */
+            --text-main: #f1f5f9;
+            --text-dim: #94a3b8;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            background-image: radial-gradient(#1e293b 0.5px, transparent 0.5px);
+            background-size: 30px 30px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            margin-top: 50px;
+        }
+
+        .back-btn {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 30px;
+        }
+
+        .generator-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        h1 { font-size: 1.5rem; margin-bottom: 20px; color: var(--accent); }
+
+        input {
+            width: 100%;
+            padding: 15px;
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            color: white;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        input:focus { border-color: var(--accent); }
+
+        .btn-generate {
+            width: 100%;
+            padding: 15px;
+            background: var(--accent);
+            border: none;
+            border-radius: 12px;
+            color: #020617;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-generate:hover { transform: scale(1.02); opacity: 0.9; }
+
+        #qr-result {
+            margin-top: 30px;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            animation: fadeIn 0.5s ease;
+        }
+
+        #qr-result img {
+            background: white;
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.2);
+        }
+
+        .download-text {
+            margin-top: 15px;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Ana Sayfa</a>
+
+        <div class="generator-card">
+            <h1>QR Oluşturucu</h1>
+            <p style="color: var(--text-dim); font-size: 0.85rem; margin-bottom: 20px;">
+                Link, metin veya telefon numarası yazıp QR kodunuzu anında alın.
+            </p>
+            
+            <input type="text" id="qrText" placeholder="Buraya yazın (Örn: https://...)">
+            <button class="btn-generate" onclick="generateQR()">QR KOD OLUŞTUR</button>
+
+            <div id="qr-result">
+                <div id="qrcode"></div>
+                <p class="download-text">Telefonunuzla okutabilir veya ekran görüntüsü alabilirsiniz.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function generateQR() {
+            const text = document.getElementById('qrText').value;
+            const resultDiv = document.getElementById('qr-result');
+            const qrContainer = document.getElementById('qrcode');
+            
+            if (text.trim() === "") {
+                alert("Lütfen bir metin veya link girin!");
+                return;
+            }
+
+            // Google Chart API kullanarak QR oluşturuyoruz
+            const qrUrl = `https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=${encodeURIComponent(text)}&choe=UTF-8`;
+            
+            qrContainer.innerHTML = `<img src="${qrUrl}" alt="QR Code">`;
+            resultDiv.style.display = 'flex';
+        }
+
+        // Enter tuşuna basınca da çalışsın
+        document.getElementById('qrText').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                generateQR();
+            }
+        });
+    </script>
+
+</body>
+</html>
