@@ -3,74 +3,159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resmi Mevzuat Erişim Portalı | MAYAZGAN</title>
+    <title>MAYAZGAN | Mevzuat Erişim Portalı</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body { background-color: #f1f5f9; font-family: 'Inter', sans-serif; }
-        .hero-bg { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: white; padding: 80px 0; border-radius: 0 0 50px 50px; }
-        .resmi-card { border: none; transition: 0.3s; border-radius: 20px; height: 100%; }
-        .resmi-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-        .btn-go { border-radius: 12px; padding: 10px 25px; font-weight: 600; }
-        .icon-circle { width: 70px; height: 70px; background: #f0fdf4; color: #10b981; display: flex; align-items: center; justify-content: center; border-radius: 20px; font-size: 30px; margin-bottom: 20px; }
+        :root {
+            --mayazgan-dark: #0f172a;
+            --mayazgan-accent: #10b981;
+        }
+        body { background-color: #f8fafc; font-family: 'Inter', sans-serif; color: #334155; }
+        
+        /* MAYAZGAN Header */
+        .brand-header {
+            background: var(--mayazgan-dark);
+            padding: 15px 0;
+            border-bottom: 3px solid var(--mayazgan-accent);
+        }
+        .brand-name {
+            font-weight: 900;
+            letter-spacing: 4px;
+            color: white;
+            text-transform: uppercase;
+        }
+
+        .hero-section {
+            background: linear-gradient(rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.9)), 
+                        url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&q=80&w=1000');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 0;
+            margin-bottom: -50px;
+        }
+
+        .resmi-card {
+            border: none;
+            border-radius: 20px;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: white;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
+        }
+        .resmi-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.15);
+        }
+
+        .category-badge {
+            background: #f1f5f9;
+            color: #475569;
+            padding: 12px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.3s;
+            border: 1px solid #e2e8f0;
+        }
+        .category-badge:hover {
+            background: var(--mayazgan-accent);
+            color: white;
+            border-color: var(--mayazgan-accent);
+        }
+
+        .footer-mayazgan {
+            background: var(--mayazgan-dark);
+            color: rgba(255,255,255,0.5);
+            padding: 40px 0;
+            margin-top: 100px;
+        }
     </style>
 </head>
 <body>
 
-    <div class="hero-bg text-center shadow-lg">
+    <nav class="brand-header shadow-sm sticky-top">
+        <div class="container d-flex justify-content-between align-items-center">
+            <span class="brand-name fs-4">MAYAZGAN</span>
+            <span class="badge bg-success small">MEVZUAT PORTALI</span>
+        </div>
+    </nav>
+
+    <div class="hero-section text-center">
         <div class="container">
-            <h1 class="display-4 fw-bold mb-3 text-white">Resmi Mevzuat Portalı</h1>
-            <p class="lead opacity-75">Hatalı bilgiden uzak durun. Tüm hak ve yükümlülüklerinizi doğrudan kaynağından inceleyin.</p>
+            <h1 class="display-3 fw-bold mb-3">Güçlü Bilgi, Doğru Karar.</h1>
+            <p class="lead opacity-75 mx-auto" style="max-width: 700px;">
+                Diyanet İşleri Başkanlığı'nın resmi verileriyle harmanlanmış, MAYAZGAN güvencesiyle modernize edilmiş mevzuat erişim noktası.
+            </p>
         </div>
     </div>
 
-    <div class="container mt-n5" style="margin-top: -50px;">
-        <div class="row g-4">
+    <div class="container">
+        <div class="row g-4 justify-content-center">
             <div class="col-md-4">
-                <div class="card resmi-card shadow-sm p-4">
-                    <div class="icon-circle"><i class="fas fa-gavel"></i></div>
+                <div class="card resmi-card p-4 h-100 text-center">
+                    <div class="mb-3 text-primary fs-1"><i class="fas fa-balance-scale"></i></div>
+                    <h4 class="fw-bold">Başkanlık Mevzuatı</h4>
+                    <p class="small text-muted">Hukuk Müşavirliği'nin en güncel hiyerarşik veri tabanı.</p>
+                    <a href="https://hukukmusavirligi.diyanet.gov.tr/kategoriler/ba%C5%9Fkanl%C4%B1k-mevzuat%C4%B1" target="_blank" class="btn btn-dark w-100 py-3 rounded-pill mt-auto">Sisteme Giriş</a>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card resmi-card p-4 h-100 text-center border-top border-success border-5">
+                    <div class="mb-3 text-success fs-1"><i class="fas fa-user-shield"></i></div>
+                    <h4 class="fw-bold">DİBBYS / İKYS</h4>
+                    <p class="small text-muted">Özlük bilgileriniz, hizmet puanınız ve atama süreçleriniz.</p>
+                    <a href="https://dibbys.diyanet.gov.tr/" target="_blank" class="btn btn-success w-100 py-3 rounded-pill mt-auto">Profilime Git</a>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card resmi-card p-4 h-100 text-center">
+                    <div class="mb-3 text-danger fs-1"><i class="fas fa-file-pdf"></i></div>
                     <h4 class="fw-bold">657 Sayılı Kanun</h4>
-                    <p class="text-muted">Özlük hakları, disiplin cezaları ve memuriyetin temel taşlarını içeren ana mevzuat metni.</p>
-                    <a href="https://www.mevzuat.gov.tr/mevzuatmetin/1.5.657.pdf" target="_blank" class="btn btn-outline-primary btn-go mt-auto">Resmi Gazete Metni</a>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card resmi-card shadow-sm p-4 border-top border-success border-4">
-                    <div class="icon-circle" style="background: #ecfdf5; color: #10b981;"><i class="fas fa-mosque"></i></div>
-                    <h4 class="fw-bold text-success">Diyanet Mevzuatı</h4>
-                    <p class="text-muted">Atama, yer değiştirme, sınav ve cami hizmetleri yönetmeliklerinin en güncel hali.</p>
-                    <a href="https://mevzuat.diyanet.gov.tr/" target="_blank" class="btn btn-success btn-go mt-auto text-white">DİB Mevzuatına Git</a>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card resmi-card shadow-sm p-4">
-                    <div class="icon-circle" style="background: #eff6ff; color: #3b82f6;"><i class="fas fa-user-check"></i></div>
-                    <h4 class="fw-bold">Kişisel Bilgiler (DİBBYS)</h4>
-                    <p class="text-muted">Hizmet puanı hesaplama, münhal kadro takibi ve kişisel özlük dosyanız.</p>
-                    <a href="https://dibbys.diyanet.gov.tr/" target="_blank" class="btn btn-outline-info btn-go mt-auto">DİBBYS Giriş</a>
+                    <p class="small text-muted">Devlet memurlarının temel hak ve ödevlerini içeren ana metin.</p>
+                    <a href="https://www.mevzuat.gov.tr/mevzuatmetin/1.5.657.pdf" target="_blank" class="btn btn-outline-danger w-100 py-3 rounded-pill mt-auto">PDF Olarak Oku</a>
                 </div>
             </div>
         </div>
 
-        <div class="row mt-5">
-            <div class="col-12">
-                <div class="alert alert-warning border-0 shadow-sm p-4 rounded-4">
-                    <div class="d-flex align-items-center">
-                        <i class="fas fa-exclamation-triangle fs-2 me-4 text-warning"></i>
-                        <div>
-                            <h5 class="fw-bold">Hocam Dikkat!</h5>
-                            <p class="mb-0 text-dark opacity-75">Özellikle <strong>3+1 sözleşmeli statüden kadroya geçiş</strong> ve <strong>becayiş</strong> gibi süreçlerde yönetmelikler sıkça güncellenmektedir. Karar almadan önce yukarıdaki resmi kaynaklardan son yayınlanan genelgeleri mutlaka kontrol ediniz.</p>
-                        </div>
-                    </div>
+        <div class="mt-5 pt-5">
+            <h5 class="fw-bold mb-4 text-center text-uppercase" style="letter-spacing: 2px;">Hızlı Mevzuat Kategorileri</h5>
+            <div class="row g-3">
+                <div class="col-6 col-lg-3">
+                    <a href="https://hukukmusavirligi.diyanet.gov.tr/kategoriler/y%C3%B6netmelikler" target="_blank" class="category-badge">
+                        <i class="fas fa-scroll"></i> Yönetmelikler
+                    </a>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <a href="https://hukukmusavirligi.diyanet.gov.tr/kategoriler/y%C3%B6nergeler" target="_blank" class="category-badge">
+                        <i class="fas fa-directions"></i> Yönergeler
+                    </a>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <a href="https://hukukmusavirligi.diyanet.gov.tr/kategoriler/genelgeler" target="_blank" class="category-badge">
+                        <i class="fas fa-paper-plane"></i> Genelgeler
+                    </a>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <a href="https://hukukmusavirligi.diyanet.gov.tr/kategoriler/usul-ve-esaslar" target="_blank" class="category-badge">
+                        <i class="fas fa-clipboard-check"></i> Usul ve Esaslar
+                    </a>
                 </div>
             </div>
         </div>
     </div>
 
-    <footer class="text-center py-5 text-muted">
-        <p>&copy; 2026 Mevzuat Erişim Paneli - Güvenli Bilgi Hattı</p>
+    <footer class="footer-mayazgan text-center">
+        <div class="container">
+            <h5 class="text-white mb-3">MAYAZGAN</h5>
+            <p class="small mb-0 opacity-50">Resmi Veri Kaynakları Kullanılarak Hazırlanmıştır.</p>
+            <p class="small opacity-50">© 2026 | Sivas - Türkiye</p>
+        </div>
     </footer>
 
 </body>
