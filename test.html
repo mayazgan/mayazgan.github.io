@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAYAZGAN PORTAL | Dijital Personel Asistanı</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg: #0f172a;
+            --box-bg: #1e293b;
+            --accent: #38bdf8;
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+        }
+
+        * {
+            box-sizing: border-box;
+            transition: all 0.2s ease-in-out;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 0 20px;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            letter-spacing: 2px;
+            margin: 0;
+            color: var(--accent);
+            text-transform: uppercase;
+        }
+
+        .header p {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        /* Friv Izgara Yapısı */
+        .friv-grid {
+            display: grid;
+            /* Friv tarzı yan yana çoklu kutu dizilimi */
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 15px;
+            max-width: 500px;
+            width: 90%;
+            padding: 20px;
+        }
+
+        .friv-box {
+            aspect-ratio: 1 / 1;
+            background: var(--box-bg);
+            border: 2px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            position: relative;
+            cursor: pointer;
+        }
+
+        /* İkon Stilleri */
+        .friv-box i {
+            font-size: 1.5rem;
+            color: var(--text-dim);
+            margin-bottom: 8px;
+        }
+
+        /* Yazı Stilleri (Sadece hoverda veya küçük belirginlikte) */
+        .friv-box span {
+            font-size: 0.65rem;
+            color: var(--text-dim);
+            font-weight: 700;
+            text-transform: uppercase;
+            text-align: center;
+            padding: 0 5px;
+        }
+
+        /* Hover Efektleri (Friv Ruhu) */
+        .friv-box:hover {
+            transform: scale(1.1);
+            background: var(--accent);
+            border-color: #7dd3fc;
+            z-index: 10;
+            box-shadow: 0 0 25px rgba(14, 165, 233, 0.5);
+        }
+
+        .friv-box:hover i, .friv-box:hover span {
+            color: white;
+        }
+
+        /* Özel Renkli Kutular (Opsiyonel) */
+        .box-active { border-color: var(--accent); }
+
+        /* Boş Dekoratif Kutular */
+        .empty {
+            opacity: 0.15;
+            cursor: default;
+        }
+        .empty:hover { transform: none; background: var(--box-bg); box-shadow: none; border-color: transparent; }
+
+        footer {
+            margin-top: 50px;
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            opacity: 0.6;
+        }
+
+        /* Mobil Uyumluluk */
+        @media (max-width: 480px) {
+            .friv-grid {
+                grid-template-columns: repeat(3, 1fr); /* Mobilde 3'lü dizilim */
+                gap: 10px;
+            }
+            .header h1 { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <h1>MAYAZGAN</h1>
+        <p>Dijital Personel Portalı</p>
+    </header>
+
+    <div class="friv-grid">
+        <a href="/muktesep-hesaplama" class="friv-box box-active" title="Müktesep ve MBSTS Hesaplama">
+            <i class="fas fa-calculator"></i>
+            <span>Müktesep</span>
+        </a>
+
+        <a href="#" class="friv-box" title="3+1 / 4+1 Tayin Sayacı">
+            <i class="fas fa-hourglass-half"></i>
+            <span>Süreler</span>
+        </a>
+
+        <a href="#" class="friv-box" title="Cami QR Oluşturucu">
+            <i class="fas fa-qrcode"></i>
+            <span>QR Kod</span>
+        </a>
+
+        <a href="#" class="friv-box" title="Atama ve Yer Değiştirme Rehberi">
+            <i class="fas fa-gavel"></i>
+            <span>Mevzuat</span>
+        </a>
+
+        <a href="#" class="friv-box" title="Dilekçematik">
+            <i class="fas fa-file-signature"></i>
+            <span>Dilekçe</span>
+        </a>
+
+        <a href="#" class="friv-box" title="Sınav ve Eğitim Takvimi">
+            <i class="fas fa-calendar-alt"></i>
+            <span>Sınavlar</span>
+        </a>
+
+        <div class="friv-box empty"></div>
+        <div class="friv-box empty"></div>
+        <div class="friv-box empty"></div>
+        <div class="friv-box empty"></div>
+        <div class="friv-box empty"></div>
+        <div class="friv-box empty"></div>
+    </div>
+
+    <footer>
+        &copy; 2026 MAYAZGAN • Sivas/Gölova
+    </footer>
+
+</body>
+</html>
