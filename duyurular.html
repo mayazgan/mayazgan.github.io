@@ -3,121 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>İK Özel Akış | MAYAZGAN</title>
+    <title>Duyuru Ekranı | MAYAZGAN</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --bg: #020617;
-            --card-bg: #1e293b;
             --accent: #38bdf8;
-            --text-main: #f1f5f9;
             --text-dim: #94a3b8;
         }
 
         body {
             background-color: var(--bg);
-            color: var(--text-main);
+            color: #fff;
             font-family: 'Inter', sans-serif;
             margin: 0;
             padding: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            background-image: radial-gradient(#1e293b 0.5px, transparent 0.5px);
-            background-size: 30px 30px;
+            height: 100vh;
         }
 
-        .container { width: 100%; max-width: 700px; }
-
-        .header-box {
-            background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%);
-            padding: 25px;
-            border-radius: 24px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(14, 165, 233, 0.3);
-        }
-
-        .header-box h1 { margin: 0; font-size: 1.5rem; font-weight: 800; }
-        .header-box p { margin: 10px 0 0; font-size: 0.85rem; opacity: 0.9; }
-
-        .news-list { display: flex; flex-direction: column; gap: 12px; }
-
-        /* SharePoint Tarzı Veriyi Şık Kartlara Dönüştürme */
-        .ik-card {
-            background: rgba(30, 41, 59, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 18px;
-            border-radius: 18px;
+        .header {
+            width: 100%;
+            max-width: 900px;
             display: flex;
-            align-items: center;
-            gap: 15px;
-            transition: 0.3s;
-            text-decoration: none;
+            justify-content: space-between;
+            margin-bottom: 15px;
         }
 
-        .ik-card:hover {
-            border-color: var(--accent);
-            transform: scale(1.02);
-            background: var(--card-bg);
+        .back-link { color: var(--text-dim); text-decoration: none; font-size: 0.9rem; }
+
+        /* iFrame Konteyneri */
+        .frame-wrapper {
+            width: 100%;
+            max-width: 900px;
+            height: 70vh;
+            border: 2px solid #1e293b;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            background: #0f172a;
         }
 
-        .status-icon {
-            width: 45px;
-            height: 45px;
-            background: rgba(56, 189, 248, 0.1);
-            border-radius: 12px;
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Hata Durumunda Görünecek Mesaj */
+        .error-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #0f172a;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            color: var(--accent);
+            text-align: center;
+            padding: 20px;
+            z-index: 1;
         }
 
-        .content h3 { margin: 0; font-size: 1rem; color: var(--text-main); line-height: 1.4; }
-        .content span { font-size: 0.75rem; color: var(--text-dim); display: block; margin-top: 5px; }
-
-        .btn-update {
-            margin-top: 30px;
-            background: transparent;
-            border: 1px dashed var(--text-dim);
-            color: var(--text-dim);
-            padding: 10px 20px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 0.8rem;
+        .btn-direct {
+            background: var(--accent);
+            color: #020617;
+            padding: 12px 25px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 15px;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="header-box">
-            <h1>İnsan Kaynakları Paneli</h1>
-            <p><i class="fas fa-sync-alt"></i> Dosya tabanlı veri işleme aktif.</p>
-        </div>
-
-        <div class="news-list">
-            <a href="https://insankaynaklari.diyanet.gov.tr" target="_blank" class="ik-card">
-                <div class="status-icon"><i class="fas fa-file-alt"></i></div>
-                <div class="content">
-                    <h3>2026 Yılı Muhtemel Münhal Kadrolar Listesi</h3>
-                    <span>Yüklenen Dosya Verisi</span>
-                </div>
-            </a>
-
-            <a href="https://insankaynaklari.diyanet.gov.tr" target="_blank" class="ik-card">
-                <div class="status-icon"><i class="fas fa-user-check"></i></div>
-                <div class="content">
-                    <h3>Sınav Giriş Belgeleri ve Uygulama Esasları</h3>
-                    <span>Güncel Kayıt</span>
-                </div>
-            </a>
-        </div>
-
-        <button class="btn-update" onclick="alert('Veri senkronizasyonu için ana sayfadaki canlı akışı kullanın.')">
-            <i class="fas fa-code"></i> Veri Kaynağı: SharePoint HTML
-        </button>
+    <div class="header">
+        <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Portala Dön</a>
+        <span style="color: var(--accent); font-weight: bold;">CANLI DUYURU PANELİ</span>
     </div>
+
+    <div class="frame-wrapper">
+        <div class="error-overlay">
+            <i class="fas fa-shield-alt" style="font-size: 3rem; color: var(--text-dim); margin-bottom: 15px;"></i>
+            <h3>Güvenlik Kısıtlaması</h3>
+            <p>Diyanet güvenlik protokolleri nedeniyle sayfa bu pencerede açılamıyor.</p>
+            <a href="https://insankaynaklari.diyanet.gov.tr/icerikler/Duyurular" target="_blank" class="btn-direct">
+                SAYFAYI YENİ SEKMEDE AÇ
+            </a>
+        </div>
+
+        <iframe src="https://insankaynaklari.diyanet.gov.tr/icerikler/Duyurular"></iframe>
+    </div>
+
+    <p style="margin-top: 20px; font-size: 0.8rem; color: var(--text-dim);">
+        Not: Resmi kurum siteleri genellikle iFrame koruması kullanır.
+    </p>
 
 </body>
 </html>
