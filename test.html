@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MAYAZGAN PORTAL | Akıllı Personel Sistemi</title>
+    <title>MAYAZGAN | Dijital Personel Portalı</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -21,7 +21,7 @@
         body {
             background-color: var(--bg);
             color: var(--text-main);
-            font-family: 'Inter', system-ui, sans-serif;
+            font-family: 'Inter', -apple-system, sans-serif;
             margin: 0;
             display: flex;
             flex-direction: column;
@@ -34,86 +34,89 @@
 
         .header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 45px;
         }
 
         .header h1 {
-            font-size: 2.8rem;
+            font-size: 3rem;
             font-weight: 900;
-            background: linear-gradient(to right, #38bdf8, #818cf8);
+            background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin: 0;
+            filter: drop-shadow(0 10px 10px rgba(0,0,0,0.3));
         }
 
-        /* Kutucukları Büyüttüğümüz Alan */
         .friv-container {
             display: grid;
-            /* Kutuları 100px'den 115px civarına çektik */
-            grid-template-columns: repeat(4, 115px); 
-            gap: 15px; /* Boşluğu da 2px artırdık */
+            grid-template-columns: repeat(4, 120px); /* Kutular artık 120px, daha da tok! */
+            gap: 18px;
             justify-content: center;
             perspective: 1000px;
         }
 
         .friv-box {
-            width: 115px;
-            height: 115px;
-            background: rgba(30, 41, 59, 0.7);
-            backdrop-filter: blur(10px);
+            width: 120px;
+            height: 120px;
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(8px);
             border: 2px solid rgba(255, 255, 255, 0.05);
-            border-radius: 18px; /* Daha yuvarlak, daha premium */
+            border-radius: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-decoration: none;
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
 
         .friv-box i { 
-            font-size: 1.8rem; /* İkonu da orantılı büyüttük */
-            margin-bottom: 8px; 
+            font-size: 1.9rem;
+            margin-bottom: 10px; 
             transition: 0.3s; 
         }
 
-        /* Renk Efektleri */
-        .b-cyan:hover { border-color: var(--cyan); box-shadow: 0 0 25px var(--cyan); }
-        .b-emerald:hover { border-color: var(--emerald); box-shadow: 0 0 25px var(--emerald); }
-        .b-amber:hover { border-color: var(--amber); box-shadow: 0 0 25px var(--amber); }
-        .b-rose:hover { border-color: var(--rose); box-shadow: 0 0 25px var(--rose); }
-        .b-violet:hover { border-color: var(--violet); box-shadow: 0 0 25px var(--violet); }
-
         .friv-box span {
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             font-weight: 800;
             text-transform: uppercase;
             color: var(--text-dim);
+            letter-spacing: 0.5px;
         }
 
+        /* Renk Odaklı Hover Efektleri */
+        .b-cyan:hover { border-color: var(--cyan); box-shadow: 0 0 30px rgba(14, 165, 233, 0.4); }
+        .b-emerald:hover { border-color: var(--emerald); box-shadow: 0 0 30px rgba(16, 185, 129, 0.4); }
+        .b-amber:hover { border-color: var(--amber); box-shadow: 0 0 30px rgba(245, 158, 11, 0.4); }
+        .b-rose:hover { border-color: var(--rose); box-shadow: 0 0 30px rgba(244, 63, 94, 0.4); }
+        .b-violet:hover { border-color: var(--violet); box-shadow: 0 0 30px rgba(139, 92, 246, 0.4); }
+
         .friv-box:hover {
-            transform: scale(1.12) translateY(-5px);
+            transform: scale(1.15) translateY(-8px);
             background: var(--box-bg);
             z-index: 10;
         }
 
-        .friv-box:hover i { transform: scale(1.1); color: #fff !important; }
+        .friv-box:hover i { transform: scale(1.15); color: #fff !important; }
         .friv-box:hover span { color: #fff; }
 
         .empty { opacity: 0.1; cursor: default; }
 
-        @media (max-width: 520px) {
+        @media (max-width: 580px) {
             .friv-container { 
-                grid-template-columns: repeat(3, 105px); /* Mobilde biraz daha kompakt */
-                gap: 10px; 
+                grid-template-columns: repeat(3, 110px); 
+                gap: 12px; 
             }
-            .friv-box { width: 105px; height: 105px; }
+            .friv-box { width: 110px; height: 110px; }
+            .header h1 { font-size: 2.2rem; }
         }
 
         footer {
-            margin-top: 50px;
-            font-size: 0.8rem;
+            margin-top: 60px;
+            font-size: 0.85rem;
             color: var(--text-dim);
+            letter-spacing: 1px;
         }
     </style>
 </head>
@@ -121,7 +124,7 @@
 
     <header class="header">
         <h1>MAYAZGAN</h1>
-        <p style="color: var(--text-dim); font-size: 1rem; margin-top: 5px;">Dijital Personel Portalı</p>
+        <p style="color: var(--text-dim); font-size: 1.1rem; margin-top: 8px;">Diyanet Personel Dijital Portalı</p>
     </header>
 
     <div class="friv-container">
@@ -131,7 +134,7 @@
         </a>
 
         <a href="#" class="friv-box b-emerald">
-            <i class="fas fa-history" style="color: var(--emerald);"></i>
+            <i class="fas fa-hourglass-start" style="color: var(--emerald);"></i>
             <span>Tayin</span>
         </a>
 
@@ -146,12 +149,12 @@
         </a>
 
         <a href="#" class="friv-box b-rose">
-            <i class="fas fa-pen-fancy" style="color: var(--rose);"></i>
+            <i class="fas fa-pen-nib" style="color: var(--rose);"></i>
             <span>Dilekçe</span>
         </a>
 
         <a href="#" class="friv-box b-cyan">
-            <i class="fas fa-graduation-cap" style="color: var(--cyan);"></i>
+            <i class="fas fa-user-graduate" style="color: var(--cyan);"></i>
             <span>Sınavlar</span>
         </a>
 
@@ -164,7 +167,7 @@
     </div>
 
     <footer>
-        &copy; 2026 MAYAZGAN • Sivas/Gölova
+        &copy; 2026 MAYAZGAN • Sivas'tan Dijital Çözümler
     </footer>
 
 </body>
