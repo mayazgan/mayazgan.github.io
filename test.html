@@ -3,26 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MAYAZGAN PORTAL | Dijital Personel Asistanı</title>
+    <title>MAYAZGAN PORTAL | Akıllı Personel Sistemi</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --bg: #0f172a;
+            --bg: #020617;
             --box-bg: #1e293b;
-            --accent: #38bdf8;
-            --text-main: #f8fafc;
-            --text-dim: #94a3b8;
-        }
-
-        * {
-            box-sizing: border-box;
-            transition: all 0.2s ease-in-out;
+            --text-main: #f1f5f9;
+            --text-dim: #64748b;
+            --cyan: #0ea5e9;
+            --emerald: #10b981;
+            --amber: #f59e0b;
+            --rose: #f43f5e;
+            --violet: #8b5cf6;
         }
 
         body {
             background-color: var(--bg);
             color: var(--text-main);
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Segoe UI', system-ui, sans-serif;
             margin: 0;
             display: flex;
             flex-direction: column;
@@ -30,107 +29,89 @@
             justify-content: center;
             min-height: 100vh;
             overflow-x: hidden;
+            /* Friv tarzı arka plan dokusu */
+            background-image: radial-gradient(#1e293b 0.5px, transparent 0.5px);
+            background-size: 24px 24px;
         }
 
         .header {
             text-align: center;
-            margin-bottom: 40px;
-            padding: 0 20px;
+            margin-bottom: 50px;
         }
 
         .header h1 {
-            font-size: 2rem;
-            letter-spacing: 2px;
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+            background: linear-gradient(to right, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             margin: 0;
-            color: var(--accent);
-            text-transform: uppercase;
         }
 
-        .header p {
-            color: var(--text-dim);
-            font-size: 0.9rem;
-            margin-top: 5px;
-        }
-
-        /* Friv Izgara Yapısı */
-        .friv-grid {
+        .friv-container {
             display: grid;
-            /* Friv tarzı yan yana çoklu kutu dizilimi */
-            grid-template-columns: repeat(4, 1fr); 
-            gap: 15px;
-            max-width: 500px;
-            width: 90%;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            max-width: 520px;
             padding: 20px;
+            perspective: 1000px;
         }
 
         .friv-box {
             aspect-ratio: 1 / 1;
-            background: var(--box-bg);
-            border: 2px solid rgba(255, 255, 255, 0.05);
-            border-radius: 16px;
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 14px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
             position: relative;
-            cursor: pointer;
         }
 
-        /* İkon Stilleri */
-        .friv-box i {
-            font-size: 1.5rem;
-            color: var(--text-dim);
-            margin-bottom: 8px;
-        }
+        /* Her kutuya farklı bir parıltı rengi */
+        .friv-box i { font-size: 1.6rem; margin-bottom: 6px; transition: 0.3s; }
+        .b-cyan:hover { border-color: var(--cyan); box-shadow: 0 0 20px var(--cyan); }
+        .b-emerald:hover { border-color: var(--emerald); box-shadow: 0 0 20px var(--emerald); }
+        .b-amber:hover { border-color: var(--amber); box-shadow: 0 0 20px var(--amber); }
+        .b-rose:hover { border-color: var(--rose); box-shadow: 0 0 20px var(--rose); }
+        .b-violet:hover { border-color: var(--violet); box-shadow: 0 0 20px var(--violet); }
 
-        /* Yazı Stilleri (Sadece hoverda veya küçük belirginlikte) */
         .friv-box span {
-            font-size: 0.65rem;
-            color: var(--text-dim);
-            font-weight: 700;
+            font-size: 0.6rem;
+            font-weight: 800;
             text-transform: uppercase;
-            text-align: center;
-            padding: 0 5px;
+            color: var(--text-dim);
+            letter-spacing: 0.5px;
         }
 
-        /* Hover Efektleri (Friv Ruhu) */
         .friv-box:hover {
-            transform: scale(1.1);
-            background: var(--accent);
-            border-color: #7dd3fc;
+            transform: scale(1.15) rotate(2deg);
+            background: var(--box-bg);
             z-index: 10;
-            box-shadow: 0 0 25px rgba(14, 165, 233, 0.5);
         }
 
-        .friv-box:hover i, .friv-box:hover span {
-            color: white;
-        }
+        .friv-box:hover i { transform: scale(1.2); color: #fff !important; }
+        .friv-box:hover span { color: #fff; }
 
-        /* Özel Renkli Kutular (Opsiyonel) */
-        .box-active { border-color: var(--accent); }
+        /* Boş Kutular */
+        .empty { opacity: 0.1; cursor: default; }
 
-        /* Boş Dekoratif Kutular */
-        .empty {
-            opacity: 0.15;
-            cursor: default;
+        /* Mobil Optimizasyon */
+        @media (max-width: 480px) {
+            .friv-container { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+            .header h1 { font-size: 1.8rem; }
         }
-        .empty:hover { transform: none; background: var(--box-bg); box-shadow: none; border-color: transparent; }
 
         footer {
-            margin-top: 50px;
-            font-size: 0.75rem;
+            margin-top: 40px;
+            font-size: 0.8rem;
             color: var(--text-dim);
-            opacity: 0.6;
-        }
-
-        /* Mobil Uyumluluk */
-        @media (max-width: 480px) {
-            .friv-grid {
-                grid-template-columns: repeat(3, 1fr); /* Mobilde 3'lü dizilim */
-                gap: 10px;
-            }
-            .header h1 { font-size: 1.5rem; }
+            font-weight: 500;
         }
     </style>
 </head>
@@ -138,37 +119,37 @@
 
     <header class="header">
         <h1>MAYAZGAN</h1>
-        <p>Dijital Personel Portalı</p>
+        <p style="color: var(--text-dim); font-size: 0.9rem; margin-top: 5px;">Diyanet Personel Dijital Portalı</p>
     </header>
 
-    <div class="friv-grid">
-        <a href="/muktesep-hesaplama" class="friv-box box-active" title="Müktesep ve MBSTS Hesaplama">
-            <i class="fas fa-calculator"></i>
+    <div class="friv-container">
+        <a href="/muktesep-hesaplama" class="friv-box b-cyan" style="border-color: rgba(14, 165, 233, 0.3);">
+            <i class="fas fa-calculator" style="color: var(--cyan);"></i>
             <span>Müktesep</span>
         </a>
 
-        <a href="#" class="friv-box" title="3+1 / 4+1 Tayin Sayacı">
-            <i class="fas fa-hourglass-half"></i>
-            <span>Süreler</span>
+        <a href="#" class="friv-box b-emerald">
+            <i class="fas fa-history" style="color: var(--emerald);"></i>
+            <span>Tayin</span>
         </a>
 
-        <a href="#" class="friv-box" title="Cami QR Oluşturucu">
-            <i class="fas fa-qrcode"></i>
+        <a href="#" class="friv-box b-amber">
+            <i class="fas fa-qrcode" style="color: var(--amber);"></i>
             <span>QR Kod</span>
         </a>
 
-        <a href="#" class="friv-box" title="Atama ve Yer Değiştirme Rehberi">
-            <i class="fas fa-gavel"></i>
+        <a href="#" class="friv-box b-violet">
+            <i class="fas fa-gavel" style="color: var(--violet);"></i>
             <span>Mevzuat</span>
         </a>
 
-        <a href="#" class="friv-box" title="Dilekçematik">
-            <i class="fas fa-file-signature"></i>
+        <a href="#" class="friv-box b-rose">
+            <i class="fas fa-pen-fancy" style="color: var(--rose);"></i>
             <span>Dilekçe</span>
         </a>
 
-        <a href="#" class="friv-box" title="Sınav ve Eğitim Takvimi">
-            <i class="fas fa-calendar-alt"></i>
+        <a href="#" class="friv-box b-cyan">
+            <i class="fas fa-graduation-cap" style="color: var(--cyan);"></i>
             <span>Sınavlar</span>
         </a>
 
@@ -186,3 +167,4 @@
 
 </body>
 </html>
+
