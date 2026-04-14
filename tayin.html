@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAYAZGAN | Akıllı Mevzuat Takip</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --accent: #00ff88;
+            --bg-dark: #0a0f18;
+            --glass: rgba(30, 41, 59, 0.7);
+        }
+        body { 
+            background: radial-gradient(circle at top right, #1e293b, var(--bg-dark));
+            color: #e2e8f0;
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 20px 0;
+        }
+        .container { max-width: 650px; }
+        
+        .brand-header {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            letter-spacing: 12px;
+            background: linear-gradient(to right, #00ff88, #60efff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 5px;
+            text-shadow: 0 10px 20px rgba(0,255,136,0.2);
+        }
+
+        .glass-panel {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 30px;
+            padding: 45px;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+        }
+
+        .form-label { font-size: 0.75rem; font-weight: 700; color: var(--accent); letter-spacing: 1.5px; margin-bottom: 10px; }
+        
+        .custom-input {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: white;
+            border-radius: 15px;
+            padding: 15px;
+            transition: 0.3s;
+        }
+        .custom-input:focus {
+            background: rgba(15, 23, 42, 1);
+            border-color: var(--accent);
+            box-shadow: 0 0 15px rgba(0,255,136,0.2);
+            color: white;
+        }
+
+        .btn-mayazgan {
+            background: linear-gradient(45deg, #00ff88, #00bd68);
+            border: none;
+            border-radius: 15px;
+            padding: 18px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #0a0f18;
+            transition: 0.4s;
+            margin-top: 20px;
+        }
+        .btn-mayazgan:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(0,255,136,0.4);
+            color: #0a0f18;
+        }
+
+        .result-card {
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 15px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            animation: slideIn 0.5s ease-out forwards;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .icon-circle {
+            min-width: 40px; height: 40px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+        }
+        .status-ok { color: #00ff88; background: rgba(0,255,136,0.1); border: 1px solid rgba(0,255,136,0.2); }
+        .status-wait { color: #fbbf24; background: rgba(251,191,36,0.1); border: 1px solid rgba(251,191,36,0.2); }
+        .status-no { color: #f87171; background: rgba(248,113,113,0.1); border: 1px solid rgba(248,113,113,0.2); }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="text-center mb-5">
+        <h1 class="brand-header display-4">MAYAZGAN</h1>
+        <p class="text-muted fw-bold small text-uppercase" style="letter-spacing: 4px;">Diyanet Mevzuat Analitik Sürümü</p>
+    </div>
+
+    <div class="glass-panel">
+        <div class="row g-4">
+            <div class="col-12">
+                <label class="form-label text-uppercase"><i class="fas fa-calendar-alt me-2"></i>Göreve Başlama Tarihi</label>
+                <input type="date" id="startDate" class="form-control custom-input">
+            </div>
+            <div class="col-12">
+                <label class="form-label text-uppercase"><i class="fas fa-star me-2"></i>MBSTS Puanı (Min. 50 Gerekli)</label>
+                <input type="number" id="mbsts" class="form-control custom-input" placeholder="Puanınızı girin">
+            </div>
+            <div class="col-12">
+                <button onclick="analizEt()" class="btn btn-mayazgan w-100 shadow-lg">SİSTEMİ SORGULA</button>
+            </div>
+        </div>
+
+        <div id="resultContainer" class="mt-5" style="display: none;">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h5 class="fw-bold mb-0">Durum Raporu</h5>
+                <span id="dateBadge" class="badge rounded-pill bg-dark py-2 px-3 border border-secondary"></span>
+            </div>
+            <div id="outputList"></div>
+        </div>
+    </div>
+
+    <p class="text-center mt-5 text-muted small opacity-50">
+        MAYAZGAN Lab &copy; 2026 | Resmi Mevzuat Algoritmasıyla Optimize Edilmiştir
+    </p>
+</div>
+
+<script>
+    function analizEt() {
+        const dateInput = document.getElementById('startDate').value;
+        const score = parseInt(document.getElementById('mbsts').value) || 0;
+        
+        if(!dateInput) return alert("Lütfen tarih seçin hoca.");
+
+        const start = new Date(dateInput);
+        const today = new Date();
+        const diffTime = Math.abs(today - start);
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        const months = diffDays / 30.44;
+        const years = diffDays / 365;
+
+        document.getElementById('dateBadge').innerText = today.toLocaleDateString('tr-TR');
+        const container = document.getElementById('resultContainer');
+        const output = document.getElementById('outputList');
+        
+        container.style.display = 'block';
+        output.innerHTML = '';
+
+        const hasPuan = score >= 50;
+
+        // 6 AY KONTROLÜ
+        if(months < 6) {
+            render("fa-clock", "6 ayınız dolmamış. Henüz herhangi bir yer değişikliği hakkınız bulunmuyor.", "status-no");
+        } else {
+            render("fa-check-circle", "6 aylık süre doldu: Şehir içi yer değişikliği hakkı aktif.", "status-ok");
+            
+            if(hasPuan) {
+                render("fa-file-signature", `Puanınız (${score}) yeterli: DİBBYS üzerinden başvuru yapabilir veya 18/A-1(ç) ile dilekçe verebilirsiniz.`, "status-ok");
+            } else {
+                render("fa-exclamation-triangle", "Puan yetersiz (50 altı): Ne DİBBYS başvurusu ne de 18/A-1(ç) dilekçesi mümkün değildir.", "status-no");
+            }
+        }
+
+        // 2 YIL KONTROLÜ
+        if(years >= 2) {
+            render("fa-map-marked-alt", "2 yıl doldu: Şehir dışı tayin başvuru kapısı açıldı.", "status-ok");
+        } else {
+            const kalan = Math.ceil((2 * 365) - diffDays);
+            render("fa-hourglass-half", `Şehir dışı tayin hakkına ${kalan} gün kaldı (2 yıl şartı).`, "status-wait");
+        }
+
+        // 4 YIL KONTROLÜ
+        if(years >= 4) {
+            render("fa-rocket", "4 yıl doldu: Şehir dışı geçişlerde tam serbestlik kazandınız.", "status-ok");
+        } else {
+            const kalan4 = Math.ceil((4 * 365) - diffDays);
+            render("fa-lock", `Tam serbestlik (4 yıl) için ${kalan4} gününüz var.`, "status-wait");
+        }
+    }
+
+    function render(icon, text, statusClass) {
+        const div = document.createElement('div');
+        div.className = 'result-card';
+        div.innerHTML = `
+            <div class="icon-circle ${statusClass}"><i class="fas ${icon}"></i></div>
+            <div><p class="mb-0 fw-bold" style="font-size: 0.9rem;">${text}</p></div>
+        `;
+        document.getElementById('outputList').appendChild(div);
+    }
+</script>
+
+</body>
+</html>
