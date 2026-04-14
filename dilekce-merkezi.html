@@ -3,55 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resmi Dilekçe Hazırlama | MAYAZGAN</title>
+    <title>Resmi Dilekçe Otomasyonu | MAYAZGAN</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --bg: #020617;
+            --bg: #0f172a;
             --card-bg: #1e293b;
-            --accent: #10b981;
+            --accent: #f59e0b; /* Sivas'ın sarı-sıcak tonu */
             --text-main: #f1f5f9;
         }
 
-        /* --- ARAYÜZ (EKRAN) TASARIMI --- */
+        /* --- MODERN ARAYÜZ (EKRAN) --- */
         body {
             background-color: var(--bg);
             color: var(--text-main);
-            font-family: 'Inter', sans-serif;
-            margin: 0; padding: 20px;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            margin: 0; padding: 40px 20px;
             display: flex; flex-direction: column; align-items: center;
+            min-height: 100vh;
         }
 
-        .no-print { width: 100%; max-width: 900px; margin-bottom: 50px; }
+        .no-print { width: 100%; max-width: 850px; animation: slideUp 0.5s ease-out; }
+
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         
         .form-container {
             background: var(--card-bg);
-            padding: 30px;
-            border-radius: 24px;
-            border: 1px solid rgba(255,255,255,0.05);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            padding: 40px;
+            border-radius: 30px;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
         }
 
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-        }
-
+        .form-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
         .full-width { grid-column: span 2; }
         
-        label { display: block; font-size: 0.8rem; color: #94a3b8; margin-bottom: 5px; }
+        label { display: block; font-size: 0.85rem; color: #94a3b8; margin-bottom: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
         
         input, textarea {
-            width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #334155;
-            background: #0f172a; color: white; box-sizing: border-box; outline: none;
+            width: 100%; padding: 15px; border-radius: 12px; border: 2px solid #334155;
+            background: #020617; color: white; box-sizing: border-box; outline: none;
+            font-size: 1rem; transition: all 0.3s ease;
         }
 
+        input:focus, textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.1); }
+
         .btn-print {
-            grid-column: span 2; padding: 18px; background: var(--accent);
-            border: none; border-radius: 14px; color: white; font-weight: bold;
-            cursor: pointer; font-size: 1.1rem; margin-top: 15px; transition: 0.3s;
+            grid-column: span 2; padding: 20px; background: var(--accent);
+            border: none; border-radius: 15px; color: #000; font-weight: 800;
+            cursor: pointer; font-size: 1.1rem; margin-top: 20px;
+            display: flex; align-items: center; justify-content: center; gap: 12px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
+        .btn-print:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(245, 158, 11, 0.3); }
 
         /* --- RESMİ DİLEKÇE TASARIMI (A4 ÇIKTI) --- */
         #dilekce-cikti {
@@ -60,70 +65,63 @@
             color: black;
             width: 210mm;
             min-height: 297mm;
-            padding: 20mm 20mm 20mm 30mm; /* Standart dosyalama paylı boşluk */
+            padding: 25mm 20mm 20mm 30mm;
             box-sizing: border-box;
             font-family: "Times New Roman", Times, serif;
             font-size: 12pt;
-            line-height: 1.5;
+            line-height: 1.6;
+            position: relative;
         }
 
-        /* Tarih Sağ Üstte */
-        .out-tarih { 
-            text-align: right; 
-            margin-bottom: 10px; 
-            font-weight: normal;
-        }
+        .out-tarih { text-align: right; margin-bottom: 20px; font-size: 12pt; }
 
-        /* Sol Üst Bilgi Bloğu (Sola Yaslı ama Hizalı) */
         .ust-bilgi-bloku {
             text-align: left;
-            margin-bottom: 40px;
-            width: fit-content;
+            margin-bottom: 45px;
+            width: 85%;
         }
 
         .info-row {
             display: grid;
-            grid-template-columns: 120px 10px auto;
-            margin-bottom: 3px;
-            font-size: 11pt;
+            grid-template-columns: 140px 15px auto;
+            margin-bottom: 4px;
+            align-items: start;
         }
 
-        /* Makam Başlığı (Tam Orta) */
+        .info-row span:first-child { font-weight: bold; }
+
         .out-makam { 
             text-align: center; 
             font-weight: bold; 
-            margin-bottom: 50px; 
+            margin: 60px 0 50px 0;
             text-transform: uppercase;
-            padding: 0 20px;
-            clear: both;
+            font-size: 14pt;
+            line-height: 1.3;
         }
 
-        /* Dilekçe Metni (İki Yana Yasla) */
         .out-metin { 
             text-indent: 1.5cm; 
             text-align: justify; 
-            margin-bottom: 40px;
-            word-wrap: break-word;
+            margin-bottom: 60px;
         }
         
-        /* İmza Bloğu (Sağda Ortalanmış) */
         .out-imza-alani { 
             float: right; 
             text-align: center; 
-            min-width: 5cm;
-            margin-top: 20px;
+            min-width: 6cm;
+            margin-top: 10px;
         }
 
         .out-adsoyad-imza {
             font-weight: bold;
             text-transform: uppercase;
             margin-bottom: 5px;
+            font-size: 12pt;
         }
 
-        /* Ekler Bölümü */
         .out-ekler { 
-            margin-top: 80px; 
-            font-size: 10pt; 
+            margin-top: 100px; 
+            font-size: 11pt; 
             clear: both;
         }
 
@@ -139,32 +137,35 @@
 
     <div class="no-print">
         <div class="form-container">
-            <h2 style="margin-top:0; color:var(--accent); text-align: center;">DİBBYS Standart Dilekçe Hazırlayıcı</h2>
+            <div style="text-align: center; margin-bottom: 30px;">
+                <h2 style="margin:0; color:var(--accent); font-size: 2rem;">Dilekçe Hazırlama</h2>
+                <p style="color: #94a3b8; margin-top: 10px;">DİBBYS ve Resmi Kurum Formatında</p>
+            </div>
             
             <div class="form-grid">
-                <div><label>Ad Soyad</label><input type="text" id="adsoyad" placeholder="Örn: Ahmet Yılmaz"></div>
+                <div><label>Ad Soyad</label><input type="text" id="adsoyad" oninput="buHarf(this)"></div>
                 <div><label>T.C. Kimlik No</label><input type="text" id="tckimlik" maxlength="11"></div>
                 <div><label>Kurum Sicil No</label><input type="text" id="sicil"></div>
                 <div><label>Telefon No</label><input type="text" id="telefon"></div>
-                <div class="full-width"><label>İkamet Adresi</label><input type="text" id="adres"></div>
+                <div class="full-width"><label>İkamet Adresi</label><textarea id="adres" rows="2"></textarea></div>
                 
                 <div class="full-width">
                     <label>Gideceği Makam</label>
-                    <input type="text" id="makam" placeholder="T.C. SİVAS VALİLİĞİNE (İl Müftülüğü)">
+                    <textarea id="makam" rows="2" placeholder="T.C. SİVAS VALİLİĞİNE&#10;(İl Müftülüğü)" oninput="buHarf(this)"></textarea>
                 </div>
 
                 <div class="full-width">
                     <label>Dilekçe Metni</label>
-                    <textarea id="metin" rows="6" placeholder="...gereğini bilgilerinize arz ederim."></textarea>
+                    <textarea id="metin" rows="8"></textarea>
                 </div>
 
                 <div class="full-width">
-                    <label>Varsa Ekler (Her satıra bir ek)</label>
+                    <label>Ekler (Her satıra bir tane)</label>
                     <textarea id="ekler" rows="2"></textarea>
                 </div>
 
                 <button class="btn-print" onclick="yazdir()">
-                    <i class="fas fa-print"></i> RESMİ ÇIKTIYI HAZIRLA
+                    <i class="fas fa-file-pdf"></i> DİLEKÇEYİ OLUŞTUR VE YAZDIR
                 </button>
             </div>
         </div>
@@ -175,7 +176,7 @@
 
         <div class="ust-bilgi-bloku">
             <div class="info-row"><span>ADI SOYADI</span><span>:</span><span id="p-adsoyad"></span></div>
-            <div class="info-row"><span>T.C. NO</span><span>:</span><span id="p-tckimlik"></span></div>
+            <div class="info-row"><span>T.C. KİMLİK NO</span><span>:</span><span id="p-tckimlik"></span></div>
             <div class="info-row"><span>SİCİL NO</span><span>:</span><span id="p-sicil"></span></div>
             <div class="info-row"><span>ADRES</span><span>:</span><span id="p-adres"></span></div>
             <div class="info-row"><span>TEL</span><span>:</span><span id="p-telefon"></span></div>
@@ -197,12 +198,18 @@
     </div>
 
     <script>
+        // Otomatik Büyük Harf Dönüştürücü (Resmi Evrak Şıklığı)
+        function buHarf(input) {
+            let start = input.selectionStart;
+            let end = input.selectionEnd;
+            input.value = input.value.toLocaleUpperCase('tr-TR');
+            input.setSelectionRange(start, end);
+        }
+
         function yazdir() {
-            // Tarih
             const bugun = new Date();
             document.getElementById('p-tarih').innerText = bugun.toLocaleDateString('tr-TR');
 
-            // Verileri Aktar
             const adSoyad = document.getElementById('adsoyad').value;
             document.getElementById('p-adsoyad').innerText = adSoyad;
             document.getElementById('p-adsoyad-imza').innerText = adSoyad;
@@ -212,10 +219,10 @@
             document.getElementById('p-adres').innerText = document.getElementById('adres').value;
             document.getElementById('p-telefon').innerText = document.getElementById('telefon').value;
             
-            document.getElementById('p-makam').innerText = document.getElementById('makam').value;
+            // Makam alanındaki satır sonlarını koru
+            document.getElementById('p-makam').innerHTML = document.getElementById('makam').value.replace(/\n/g, '<br>');
             document.getElementById('p-metin').innerText = document.getElementById('metin').value;
 
-            // Ekleri Yönet
             const ekText = document.getElementById('ekler').value;
             if(ekText.trim() !== "") {
                 document.getElementById('p-ekler-alan').style.display = "block";
@@ -224,7 +231,6 @@
                 document.getElementById('p-ekler-alan').style.display = "none";
             }
 
-            // Yazdır
             window.print();
         }
     </script>
