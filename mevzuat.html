@@ -3,198 +3,291 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mevzuat Ansiklopedisi | MAYAZGAN</title>
+    <title>657 DMK Ansiklopedisi | MAYAZGAN</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --bg: #0f172a;
+            --bg: #020617;
+            --sidebar-bg: #0f172a;
             --card-bg: #1e293b;
             --accent: #38bdf8;
+            --accent-glow: rgba(56, 189, 248, 0.3);
             --text-main: #f1f5f9;
             --text-dim: #94a3b8;
-            --border: rgba(255,255,255,0.08);
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
         }
 
+        * { box-sizing: border-box; }
         body {
             background-color: var(--bg);
             color: var(--text-main);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0; padding: 0;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            margin: 0; display: flex;
             scroll-behavior: smooth;
         }
 
-        /* --- ÜST PANEL --- */
-        .hero {
-            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-            padding: 60px 20px;
-            text-align: center;
-            border-bottom: 1px solid var(--border);
+        /* --- SOL MENÜ (NAVIGASYON) --- */
+        .sidebar {
+            width: 300px;
+            height: 100vh;
+            background: var(--sidebar-bg);
+            border-right: 1px solid rgba(255,255,255,0.05);
+            position: fixed;
+            overflow-y: auto;
+            padding: 20px;
         }
 
-        .container { width: 95%; max-width: 1000px; margin: 0 auto; }
-
-        .search-container {
-            max-width: 600px; margin: 30px auto 0; position: relative;
-        }
-
-        .search-container input {
-            width: 100%; padding: 18px 25px 18px 55px;
-            background: rgba(255,255,255,0.05);
-            border: 2px solid var(--border);
-            border-radius: 15px; color: white; font-size: 1.1rem;
+        .sidebar h2 { font-size: 1.2rem; color: var(--accent); margin-bottom: 20px; padding-left: 10px; }
+        
+        .nav-link {
+            display: block;
+            padding: 12px 15px;
+            color: var(--text-dim);
+            text-decoration: none;
+            border-radius: 10px;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
             transition: 0.3s;
         }
+        .nav-link:hover { background: rgba(255,255,255,0.05); color: var(--accent); }
+        .nav-link i { margin-right: 10px; width: 20px; text-align: center; }
 
-        .search-container input:focus { border-color: var(--accent); background: rgba(255,255,255,0.1); outline: none; }
-        .search-container i { position: absolute; left: 20px; top: 22px; color: var(--accent); font-size: 1.2rem; }
-
-        /* --- HIZLI ERİŞİM (KATEGORİLER) --- */
-        .categories {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px; margin: -30px auto 40px;
+        /* --- ANA İÇERİK --- */
+        .main-content {
+            margin-left: 300px;
+            flex: 1;
+            padding: 40px;
+            max-width: 1100px;
         }
 
-        .cat-card {
+        .hero-banner {
+            background: linear-gradient(135deg, #1e293b 0%, #020617 100%);
+            padding: 50px;
+            border-radius: 30px;
+            border: 1px solid var(--accent-glow);
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .search-wrapper {
+            position: relative;
+            max-width: 700px;
+            margin: 30px auto 0;
+        }
+        .search-wrapper input {
+            width: 100%; padding: 18px 25px 18px 55px;
+            background: rgba(0,0,0,0.3);
+            border: 2px solid rgba(255,255,255,0.1);
+            border-radius: 15px; color: white; font-size: 1.1rem;
+        }
+        .search-wrapper i { position: absolute; left: 20px; top: 22px; color: var(--accent); }
+
+        /* --- BÖLÜMLER (SECTION) --- */
+        .ansiklopedi-section {
+            margin-bottom: 60px;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .section-header {
+            display: flex; align-items: center; gap: 15px;
+            font-size: 1.8rem; color: var(--accent);
+            margin-bottom: 25px; border-bottom: 1px solid var(--accent-glow);
+            padding-bottom: 10px;
+        }
+
+        .qa-card {
             background: var(--card-bg);
-            padding: 20px; border-radius: 15px; text-align: center;
-            text-decoration: none; color: white; border: 1px solid var(--border);
-            transition: 0.3s; box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            border-radius: 20px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: 0.3s;
         }
-        .cat-card:hover { transform: translateY(-5px); border-color: var(--accent); }
-        .cat-card i { display: block; font-size: 1.8rem; color: var(--accent); margin-bottom: 10px; }
-        .cat-card span { font-size: 0.85rem; font-weight: 600; }
+        .qa-card:hover { border-color: var(--accent-glow); transform: translateX(5px); }
 
-        /* --- MEVZUAT SECTIONLARI --- */
-        .section-title {
-            display: flex; align-items: center; gap: 10px;
-            margin: 40px 0 20px; padding-bottom: 10px;
-            border-bottom: 2px solid var(--accent); color: var(--accent);
-            text-transform: uppercase; letter-spacing: 1px;
-        }
-
-        .qa-block {
-            background: var(--card-bg);
-            border-radius: 15px; overflow: hidden; margin-bottom: 20px;
-        }
-
-        .qa-item { border-bottom: 1px solid var(--border); }
-        .qa-item:last-child { border-bottom: none; }
-
-        .qa-trigger {
-            width: 100%; padding: 22px 25px; background: none; border: none;
-            color: var(--text-main); text-align: left; cursor: pointer;
+        .qa-header {
+            padding: 20px 25px;
+            cursor: pointer;
             display: flex; justify-content: space-between; align-items: center;
-            font-size: 1.05rem; font-weight: 500;
+            font-weight: 600;
         }
 
-        .qa-trigger:hover { background: rgba(255,255,255,0.02); }
-
-        .qa-content {
-            max-height: 0; overflow: hidden; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            background: rgba(0,0,0,0.15);
+        .qa-body {
+            max-height: 0; overflow: hidden;
+            transition: 0.4s ease-out;
+            background: rgba(0,0,0,0.2);
+            border-top: 0 solid rgba(255,255,255,0.05);
         }
 
-        .qa-inner { padding: 20px 25px; line-height: 1.7; color: var(--text-dim); }
-        .qa-inner strong { color: #fff; }
+        .qa-inner { padding: 25px; line-height: 1.8; color: var(--text-dim); }
+        .qa-inner strong { color: var(--text-main); border-bottom: 1px solid var(--accent); }
 
-        .active .qa-content { max-height: 800px; }
+        .active .qa-body { max-height: 1000px; border-top-width: 1px; }
         .active .fa-chevron-down { transform: rotate(180deg); color: var(--accent); }
 
-        @media (max-width: 600px) { .categories { grid-template-columns: 1fr 1fr; } }
+        /* Vurgu Kutuları */
+        .not-box {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid var(--success);
+            padding: 15px; border-radius: 8px; margin-top: 15px; color: var(--text-main);
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        @media (max-width: 900px) {
+            .sidebar { display: none; }
+            .main-content { margin-left: 0; padding: 20px; }
+        }
     </style>
 </head>
 <body>
 
-    <div class="hero">
-        <div class="container">
-            <h1 style="font-size: 2.5rem; margin: 0;">Mevzuat Ansiklopedisi</h1>
-            <p style="color: var(--text-dim);">Tüm haklarınız, görevleriniz ve güncel kamu mevzuatı tek noktada.</p>
-            
-            <div class="search-container">
-                <i class="fas fa-search"></i>
-                <input type="text" id="m-search" onkeyup="searchMevzuat()" placeholder="Örn: '3+1 tayin', 'lojman', 'istifa'...">
-            </div>
-        </div>
+    <div class="sidebar">
+        <h2><i class="fas fa-book-open"></i> Konu Listesi</h2>
+        <a href="#sec-temel" class="nav-link"><i class="fas fa-star"></i> Temel İlkeler</a>
+        <a href="#sec-sozlesmeli" class="nav-link"><i class="fas fa-file-contract"></i> 3+1 Sözleşmeli Hakları</a>
+        <a href="#sec-aday" class="nav-link"><i class="fas fa-user-clock"></i> Aday Memurluk</a>
+        <a href="#sec-tayin" class="nav-link"><i class="fas fa-exchange-alt"></i> Tayin ve Becayiş</a>
+        <a href="#sec-izin" class="nav-link"><i class="fas fa-calendar-alt"></i> İzin Türleri</a>
+        <a href="#sec-mazeret" class="nav-link"><i class="fas fa-heart"></i> Mazeret İzinleri</a>
+        <a href="#sec-hastalik" class="nav-link"><i class="fas fa-briefcase-medical"></i> Hastalık & Refakat</a>
+        <a href="#sec-disiplin" class="nav-link"><i class="fas fa-gavel"></i> Disiplin Cezaları</a>
+        <a href="#sec-gorev" class="nav-link"><i class="fas fa-tasks"></i> Görevden Uzaklaştırma</a>
+        <a href="#sec-mali" class="nav-link"><i class="fas fa-lira-sign"></i> Mali Haklar & Zamlar</a>
+        <a href="#sec-kademe" class="nav-link"><i class="fas fa-level-up-alt"></i> Derece & Kademe</a>
+        <a href="#sec-lojman" class="nav-link"><i class="fas fa-home"></i> Lojman ve Sosyal Haklar</a>
+        <a href="#sec-etik" class="nav-link"><i class="fas fa-balance-scale"></i> Etik İlkeler & Yasaklar</a>
+        <a href="#sec-emekli" class="nav-link"><i class="fas fa-blind"></i> Emeklilik Süreci</a>
+        <a href="#sec-istifa" class="nav-link"><i class="fas fa-door-open"></i> İstifa (Müstafi Sayılma)</a>
     </div>
 
-    <div class="container" style="margin-top: 40px;">
-        
-        <div class="categories">
-            <a href="#sec-sozlesmeli" class="cat-card"><i class="fas fa-file-contract"></i><span>SÖZLEŞMELİ (3+1)</span></a>
-            <a href="#sec-izin" class="cat-card"><i class="fas fa-umbrella-beach"></i><span>İZİN HAKLARI</span></a>
-            <a href="#sec-tayin" class="cat-card"><i class="fas fa-map-marked-alt"></i><span>TAYİN & NAKİL</span></a>
-            <a href="#sec-ozluk" class="cat-card"><i class="fas fa-id-card"></i><span>ÖZLÜK & MALİ</span></a>
-            <a href="#sec-disiplin" class="cat-card"><i class="fas fa-gavel"></i><span>DİSİPLİN</span></a>
-        </div>
-
-        <h2 class="section-title" id="sec-sozlesmeli"><i class="fas fa-handshake"></i> 3+1 Sözleşmeli Mevzuatı</h2>
-        <div class="qa-block">
-            <div class="qa-item">
-                <button class="qa-trigger">Kadrosuz çalışılan süreler emekliliğe sayılır mı? <i class="fas fa-chevron-down"></i></button>
-                <div class="qa-content"><div class="qa-inner">Evet, sözleşmeli statüde geçen süreler emeklilik müktesebine ve hizmet puanına dahil edilir. <strong>SGK (4/B)</strong> primleriniz hizmet birleştirme ile memuriyetinize eklenir.</div></div>
-            </div>
-            <div class="qa-item">
-                <button class="qa-trigger">3 yıl dolunca süreç nasıl işler? <i class="fas fa-chevron-down"></i></button>
-                <div class="qa-content"><div class="qa-inner">Sözleşmeli olarak 3 yılı tamamlayan personel, kurumunun ilgili birimine başvurarak kadroya geçiş yapar. Kadroya geçişten sonra <strong>1 yıl daha</strong> aynı yerde çalışma zorunluluğu (çakılı kadro) devam eder.</div></div>
+    <div class="main-content">
+        <div class="hero-banner">
+            <h1>657 Sayılı DMK Ansiklopedisi</h1>
+            <p>Memuriyet hayatınız boyunca ihtiyaç duyacağınız tüm yasal dayanaklar ve pratik bilgiler.</p>
+            <div class="search-wrapper">
+                <i class="fas fa-search"></i>
+                <input type="text" id="ansikloSearch" onkeyup="ansikloFilter()" placeholder="Konu başlığı veya içerik ara (Örn: Süt izni, Kınama...)">
             </div>
         </div>
 
-        <h2 class="section-title" id="sec-tayin"><i class="fas fa-route"></i> Tayin, Nakil ve Becayiş</h2>
-        <div class="qa-block">
-            <div class="qa-item">
-                <button class="qa-trigger">Becayiş (Karşılıklı yer değiştirme) şartları nelerdir? <i class="fas fa-chevron-down"></i></button>
-                <div class="qa-content"><div class="qa-inner">Aynı unvan ve branştaki iki personelin karşılıklı yer değiştirmesidir. Diyanet İşleri Başkanlığı'nda sınav şartı aranmaksızın, her iki personelin dilekçesi ve mülki amirin onayı ile gerçekleştirilebilir.</div></div>
+        <section id="sec-temel" class="ansiklopedi-section">
+            <div class="section-header"><i class="fas fa-landmark"></i> Temel İlkeler</div>
+            <div class="qa-card">
+                <div class="qa-header">657 Sayılı Kanun'un 3 Temel İlkesi Nedir? <i class="fas fa-chevron-down"></i></div>
+                <div class="qa-body"><div class="qa-inner">
+                    <strong>1. Sınıflandırma:</strong> Devlet kamu hizmetleri görevlerini ve bu görevlerde çalışan devlet memurlarını görevlerinin gerektirdiği niteliklere ve mesleklere göre sınıflara ayırmaktır.<br>
+                    <strong>2. Kariyer:</strong> Memurlara yaptıkları hizmetler için lüzumlu bilgilere ve yetişme şartlarına uygun şekilde, sınıfları içinde en yüksek derecelere kadar yükselme imkanı sağlamaktır.<br>
+                    <strong>3. Liyakat:</strong> Devlet kamu hizmetlerine girmeyi, sınıflar içinde ilerleme ve yükselmeyi, görevi sona erdirmeyi liyakat sistemine dayandırmak ve bu sistemin güvenli bir şekilde uygulanmasını sağlamaktır.
+                </div></div>
             </div>
-            <div class="qa-item">
-                <button class="qa-trigger">Eş durumu tayininde 'Sigorta Günü' şartı var mı? <i class="fas fa-chevron-down"></i></button>
-                <div class="qa-content"><div class="qa-inner">Eşin özel sektörde çalışması durumunda, son 2 yıl içerisinde <strong>360 gün</strong> sigorta priminin yatmış olması şartı aranır. Eşin kamu personeli olması durumunda ise kurumlar arası koordinasyonla süreç yürütülür.</div></div>
-            </div>
-        </div>
+        </section>
 
-        <h2 class="section-title" id="sec-izin"><i class="fas fa-clock"></i> İzinler ve Mazeretler</h2>
-        <div class="qa-block">
-            <div class="qa-item">
-                <button class="qa-trigger">Süt izni kullanım saatleri nasıl belirlenir? <i class="fas fa-chevron-down"></i></button>
-                <div class="qa-content"><div class="qa-inner">Kadın memura doğum sonrası ilk 6 ayda günde <strong>3 saat</strong>, ikinci 6 ayda günde <strong>1.5 saat</strong> süt izni verilir. Saatlerin kullanım vakti memur tarafından belirlenir.</div></div>
+        <section id="sec-sozlesmeli" class="ansiklopedi-section">
+            <div class="section-header"><i class="fas fa-users-cog"></i> 3+1 Sözleşmeli Personel Hakları</div>
+            <div class="qa-card">
+                <div class="qa-header">Sözleşmeli Süreler Kademe İlerlemesinde Sayılır mı? <i class="fas fa-chevron-down"></i></div>
+                <div class="qa-body"><div class="qa-inner">
+                    Evet. 7433 sayılı Kanun ile yapılan düzenleme sonrası, sözleşmeli (4/B) statüde geçen süreler, kadroya geçiş sonrası <strong>derece ve kademe</strong> ilerlemesinde değerlendirilir. Ayrıca yıllık izin sürelerinin hesabında (10 yıl şartı için) bu süreler baz alınır.
+                </div></div>
             </div>
-            <div class="qa-item">
-                <button class="qa-trigger">Evlilik ve Ölüm izinleri kaç gündür? <i class="fas fa-chevron-down"></i></button>
-                <div class="qa-content"><div class="qa-inner">Memurun kendisinin veya çocuğunun evlenmesi, eşinin, çocuğunun, anne-babasının veya kardeşinin ölümü hallerinde <strong>7 gün</strong> mazeret izni verilir.</div></div>
+            <div class="qa-card">
+                <div class="qa-header">3+1 Sürecinde Nakil (Tayin) Hakkı Şartları Nelerdir? <i class="fas fa-chevron-down"></i></div>
+                <div class="qa-body"><div class="qa-inner">
+                    Sözleşmeli personelin isteğe bağlı yer değişikliği yapabilmesi için <strong>3 yıl sözleşmeli + 1 yıl kadrolu</strong> olmak üzere toplam 4 yıl aynı birimde çalışma şartı vardır. Ancak can güvenliği ve sağlık mazeretleri bu sürenin istisnasını teşkil edebilir.
+                </div></div>
             </div>
-        </div>
+        </section>
 
-        <h2 class="section-title" id="sec-sosyal"><i class="fas fa-home"></i> Sosyal Tesis ve Lojman</h2>
-        <div class="qa-block">
-            <div class="qa-item">
-                <button class="qa-trigger">Lojman tahsisinde öncelik sırası nasıldır? <i class="fas fa-chevron-down"></i></button>
-                <div class="qa-content"><div class="qa-inner">Lojman tahsisi; görev tahsisli, sıra tahsisli ve hizmet tahsisli olarak üçe ayrılır. Sıra tahsisli lojmanlarda hizmet süresi, aile nüfusu ve eşin çalışma durumu gibi kriterlerle <strong>puanlama</strong> yapılır.</div></div>
+        <section id="sec-aday" class="ansiklopedi-section">
+            <div class="section-header"><i class="fas fa-user-clock"></i> Aday Memurluk Süreci</div>
+            <div class="qa-card">
+                <div class="qa-header">Adaylık Süresi En Az ve En Fazla Ne Kadardır? <i class="fas fa-chevron-down"></i></div>
+                <div class="qa-body"><div class="qa-inner">
+                    Adaylık süresi <strong>1 yıldan az, 2 yıldan çok</strong> olamaz. Bu süre içinde aday memurun başka kurumlara nakli yapılamaz. Adaylık süresi sonunda başarılı olanlar asli memurluğa atanır.
+                </div></div>
             </div>
-        </div>
+        </section>
+
+        <section id="sec-izin" class="ansiklopedi-section">
+            <div class="section-header"><i class="fas fa-umbrella-beach"></i> Yıllık ve Mazeret İzinleri</div>
+            <div class="qa-card">
+                <div class="qa-header">Yıllık İzin Süreleri ve Devretme Kuralı <i class="fas fa-chevron-down"></i></div>
+                <div class="qa-body"><div class="qa-inner">
+                    Hizmeti 1 yıldan 10 yıla kadar olanlar için <strong>20 gün</strong>, 10 yıldan fazla olanlar için <strong>30 gün</strong>dür. Yıllık izinler, içinde bulunulan yıl ile bir önceki yılın izni birlikte kullanılabilir. Daha önceki yılların izni yanar.
+                </div></div>
+            </div>
+            <div class="qa-card">
+                <div class="qa-header">Babalık İzni ve Ölüm İzni Kaç Gündür? <i class="fas fa-chevron-down"></i></div>
+                <div class="qa-body"><div class="qa-inner">
+                    Eşi doğum yapan memura <strong>10 gün</strong> babalık izni verilir. Memurun kendisinin veya çocuğunun evlenmesi, eşinin, çocuğunun, anne veya babasının ölümü halinde <strong>7 gün</strong> mazeret izni verilir.
+                </div></div>
+            </div>
+        </section>
+
+        <section id="sec-disiplin" class="ansiklopedi-section">
+            <div class="section-header"><i class="fas fa-gavel"></i> Disiplin Cezaları ve Sonuçları</div>
+            <div class="qa-card">
+                <div class="qa-header">Disiplin Cezası Türleri Nelerdir? <i class="fas fa-chevron-down"></i></div>
+                <div class="qa-body"><div class="qa-inner">
+                    657 Sayılı Kanun'da 5 çeşit ceza vardır:<br>
+                    <strong>1. Uyarma:</strong> Görevde daha dikkatli olunması gerektiğinin yazı ile bildirilmesi.<br>
+                    <strong>2. Kınama:</strong> Kusurlu olduğunun yazı ile bildirilmesi.<br>
+                    <strong>3. Aylıktan Kesme:</strong> Brüt aylığın 1/30 - 1/8 arasında kesilmesidir.<br>
+                    <strong>4. Kademe İlerlemesinin Durdurulması:</strong> Fiilin ağırlığına göre kademenin 1 - 3 yıl durdurulmasıdır.<br>
+                    <strong>5. Devlet Memurluğundan Çıkarma:</strong> Bir daha devlet memurluğuna atanmamak üzere ilişiğin kesilmesidir.
+                </div></div>
+            </div>
+        </section>
+
+        <section id="sec-kademe" class="ansiklopedi-section">
+            <div class="section-header"><i class="fas fa-level-up-alt"></i> Derece ve Kademe İlerlemesi</div>
+            <div class="qa-card">
+                <div class="qa-header">Hangi Durumlarda İlave 1 Kademe Verilir? <i class="fas fa-chevron-down"></i></div>
+                <div class="qa-body"><div class="qa-inner">
+                    Son <strong>8 yıl</strong> içinde herhangi bir disiplin cezası almayan memurlara, aylık derecelerinin yükseltilmesinde dikkate alınmak üzere bir kademe ilerlemesi uygulanır.
+                </div></div>
+            </div>
+        </section>
+
+        <section id="sec-istifa" class="ansiklopedi-section">
+            <div class="section-header"><i class="fas fa-sign-out-alt"></i> İstifa ve Görevden Ayrılma</div>
+            <div class="qa-card">
+                <div class="qa-header">Usulüne Uygun İstifa ve Sonuçları <i class="fas fa-chevron-down"></i></div>
+                <div class="qa-body"><div class="qa-inner">
+                    Usulüne uygun istifa eden bir memur, <strong>6 ay</strong> geçmeden tekrar devlet memurluğuna dönemez. Eğer yerine gelecek birini beklemeden görevini bırakırsa (müstafi sayılırsa) bu süre <strong>1 yıl</strong>, devir teslim yapmadan bırakırsa <strong>3 yıl</strong>dır.
+                </div></div>
+            </div>
+        </section>
 
     </div>
 
     <script>
-        // Accordion Logic
-        document.querySelectorAll('.qa-trigger').forEach(trigger => {
-            trigger.addEventListener('click', () => {
-                const parent = trigger.parentElement;
-                parent.classList.toggle('active');
+        // Accordion İşlevi
+        document.querySelectorAll('.qa-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const card = header.parentElement;
+                card.classList.toggle('active');
+                
+                // Diğer açık olanları kapat (Opsiyonel)
+                document.querySelectorAll('.qa-card').forEach(otherCard => {
+                    if (otherCard !== card) otherCard.classList.remove('active');
+                });
             });
         });
 
-        // Search Logic
-        function searchMevzuat() {
-            let filter = document.getElementById('m-search').value.toLowerCase();
-            let items = document.querySelectorAll('.qa-item');
-            let sections = document.querySelectorAll('.qa-block');
-
-            items.forEach(item => {
-                let text = item.innerText.toLowerCase();
-                if(text.includes(filter)) {
-                    item.style.display = "block";
+        // Arama/Filtreleme İşlevi
+        function ansikloFilter() {
+            let input = document.getElementById('ansikloSearch').value.toLowerCase();
+            let cards = document.querySelectorAll('.qa-card');
+            
+            cards.forEach(card => {
+                let text = card.innerText.toLowerCase();
+                if (text.includes(input)) {
+                    card.style.display = "block";
                 } else {
-                    item.style.display = "none";
+                    card.style.display = "none";
                 }
             });
         }
