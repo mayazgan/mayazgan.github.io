@@ -3,226 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diyanet Mevzuat Ansiklopedisi | MAYAZGAN</title>
+    <title>Resmi Mevzuat Erişim Portalı | MAYAZGAN</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body { background-color: #f8f9fa; font-family: 'Inter', sans-serif; }
-        .sidebar { min-width: 280px; max-width: 280px; background: #0f172a; min-height: 100vh; position: sticky; top: 0; }
-        .sidebar .nav-link { color: #94a3b8; padding: 12px 20px; border-radius: 8px; margin: 4px 15px; transition: 0.3s; }
-        .sidebar .nav-link:hover, .sidebar .nav-link.active { background: #10b981; color: white; }
-        .main-content { flex: 1; padding: 40px; }
-        .card { border: none; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); border-radius: 12px; }
-        .accordion-button:not(.collapsed) { background-color: #ecfdf5; color: #059669; }
-        .header-section { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: white; padding: 60px; border-radius: 20px; margin-bottom: 40px; }
-        .badge-dib { background-color: #10b981; }
+        body { background-color: #f1f5f9; font-family: 'Inter', sans-serif; }
+        .hero-bg { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: white; padding: 80px 0; border-radius: 0 0 50px 50px; }
+        .resmi-card { border: none; transition: 0.3s; border-radius: 20px; height: 100%; }
+        .resmi-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .btn-go { border-radius: 12px; padding: 10px 25px; font-weight: 600; }
+        .icon-circle { width: 70px; height: 70px; background: #f0fdf4; color: #10b981; display: flex; align-items: center; justify-content: center; border-radius: 20px; font-size: 30px; margin-bottom: 20px; }
     </style>
 </head>
 <body>
 
-<div class="d-flex">
-    <nav class="sidebar d-none d-lg-block shadow">
-        <div class="p-4">
-            <h5 class="text-white fw-bold"><i class="fas fa-mosque me-2"></i> DİB REHBER</h5>
+    <div class="hero-bg text-center shadow-lg">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-3 text-white">Resmi Mevzuat Portalı</h1>
+            <p class="lead opacity-75">Hatalı bilgiden uzak durun. Tüm hak ve yükümlülüklerinizi doğrudan kaynağından inceleyin.</p>
         </div>
-        <div class="nav flex-column py-3">
-            <a href="#sec-sinav" class="nav-link"><i class="fas fa-edit me-2"></i> Sınavlar</a>
-            <a href="#sec-nakil" class="nav-link"><i class="fas fa-exchange-alt me-2"></i> Nakil & Puan</a>
-            <a href="#sec-hac" class="nav-link"><i class="fas fa-kaaba me-2"></i> Hac & Umre</a>
-            <a href="#sec-dernek" class="nav-link"><i class="fas fa-handshake me-2"></i> Dernek & Vakıf</a>
-            <a href="#sec-izinler" class="nav-link"><i class="fas fa-calendar-alt me-2"></i> İzin Hakları</a>
-            <a href="#sec-mali" class="nav-link"><i class="fas fa-coins me-2"></i> Mali Haklar</a>
-            <a href="#sec-disiplin" class="nav-link"><i class="fas fa-gavel me-2"></i> Disiplin & Etik</a>
-            <a href="#sec-sosyal" class="nav-link"><i class="fas fa-users me-2"></i> Sosyal Faaliyetler</a>
-            <a href="#sec-lojman" class="nav-link"><i class="fas fa-home me-2"></i> Lojman & İkamet</a>
-        </div>
-    </nav>
+    </div>
 
-    <main class="main-content">
-        <header class="header-section shadow-lg text-center">
-            <h1 class="display-5 fw-bold">Din Görevlisi Ansiklopedisi</h1>
-            <p class="lead opacity-75">İmam-Hatip ve Müezzin-Kayyımlar için güncel mevzuat rehberi.</p>
-            <div class="mt-4 mx-auto" style="max-width: 600px;">
-                <div class="input-group input-group-lg">
-                    <span class="input-group-text bg-white border-0"><i class="fas fa-search text-muted"></i></span>
-                    <input type="text" id="dbSearch" class="form-control border-0 shadow-none" placeholder="Konu başlığı ara..." onkeyup="filterQA()">
+    <div class="container mt-n5" style="margin-top: -50px;">
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card resmi-card shadow-sm p-4">
+                    <div class="icon-circle"><i class="fas fa-gavel"></i></div>
+                    <h4 class="fw-bold">657 Sayılı Kanun</h4>
+                    <p class="text-muted">Özlük hakları, disiplin cezaları ve memuriyetin temel taşlarını içeren ana mevzuat metni.</p>
+                    <a href="https://www.mevzuat.gov.tr/mevzuatmetin/1.5.657.pdf" target="_blank" class="btn btn-outline-primary btn-go mt-auto">Resmi Gazete Metni</a>
                 </div>
             </div>
-        </header>
 
-        <div class="container-fluid px-0" id="accordionContainer">
-            
-            <div class="section-group mb-5" id="sec-sinav">
-                <h3 class="mb-4 fw-bold text-dark border-start border-4 border-success ps-3">Sınav ve Kariyer</h3>
-                <div class="accordion shadow-sm" id="accSinav">
-                    <div class="accordion-item shadow-sm mb-2 border-0 overflow-hidden rounded-3">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#q1">
-                                MBSTS Puanı Kaç Yıl Geçerlidir?
-                            </button>
-                        </h2>
-                        <div id="q1" class="accordion-collapse collapse" data-bs-parent="#accSinav">
-                            <div class="accordion-body text-secondary">
-                                MBSTS puanı, sınavın yapıldığı tarihten itibaren <strong>3 yıl</strong> süreyle geçerlidir. Yer değiştirme ve Hac görevlendirmelerinde en yüksek puan dikkate alınır.
-                            </div>
+            <div class="col-md-4">
+                <div class="card resmi-card shadow-sm p-4 border-top border-success border-4">
+                    <div class="icon-circle" style="background: #ecfdf5; color: #10b981;"><i class="fas fa-mosque"></i></div>
+                    <h4 class="fw-bold text-success">Diyanet Mevzuatı</h4>
+                    <p class="text-muted">Atama, yer değiştirme, sınav ve cami hizmetleri yönetmeliklerinin en güncel hali.</p>
+                    <a href="https://mevzuat.diyanet.gov.tr/" target="_blank" class="btn btn-success btn-go mt-auto text-white">DİB Mevzuatına Git</a>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card resmi-card shadow-sm p-4">
+                    <div class="icon-circle" style="background: #eff6ff; color: #3b82f6;"><i class="fas fa-user-check"></i></div>
+                    <h4 class="fw-bold">Kişisel Bilgiler (DİBBYS)</h4>
+                    <p class="text-muted">Hizmet puanı hesaplama, münhal kadro takibi ve kişisel özlük dosyanız.</p>
+                    <a href="https://dibbys.diyanet.gov.tr/" target="_blank" class="btn btn-outline-info btn-go mt-auto">DİBBYS Giriş</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-12">
+                <div class="alert alert-warning border-0 shadow-sm p-4 rounded-4">
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-exclamation-triangle fs-2 me-4 text-warning"></i>
+                        <div>
+                            <h5 class="fw-bold">Hocam Dikkat!</h5>
+                            <p class="mb-0 text-dark opacity-75">Özellikle <strong>3+1 sözleşmeli statüden kadroya geçiş</strong> ve <strong>becayiş</strong> gibi süreçlerde yönetmelikler sıkça güncellenmektedir. Karar almadan önce yukarıdaki resmi kaynaklardan son yayınlanan genelgeleri mutlaka kontrol ediniz.</p>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <div class="section-group mb-5" id="sec-mali">
-                <h3 class="mb-4 fw-bold text-dark border-start border-4 border-success ps-3">Mali Haklar & Tazminatlar</h3>
-                <div class="accordion shadow-sm" id="accMali">
-                    <div class="accordion-item shadow-sm mb-2 border-0 rounded-3">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#qMali1">
-                                Uzman İmamlık Maaş Farkı Ne Kadardır?
-                            </button>
-                        </h2>
-                        <div id="qMali1" class="accordion-collapse collapse" data-bs-parent="#accMali">
-                            <div class="accordion-body text-secondary">
-                                Uzman İmam-Hatip unvanını kazanan personele, <strong>Din Hizmetleri Tazminatı</strong> üzerinden yaklaşık %20 oranında ek ödeme yapılır. Bu fark her ay maaşa yansıtılır.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item shadow-sm mb-2 border-0 rounded-3">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#qMali2">
-                                Yaz Kursu Ek Ders Ücreti Nasıl Hesaplanır?
-                            </button>
-                        </h2>
-                        <div id="qMali2" class="accordion-collapse collapse" data-bs-parent="#accMali">
-                            <div class="accordion-body text-secondary">
-                                Yaz Kur'an kurslarında görev alan personele haftalık <strong>15 saate kadar</strong> ek ders ücreti tahakkuk ettirilir. Maaş karşılığı girilen derslerin dışındaki saatler ödenir.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="section-group mb-5" id="sec-disiplin">
-                <h3 class="mb-4 fw-bold text-dark border-start border-4 border-success ps-3">Disiplin ve Etik</h3>
-                <div class="accordion shadow-sm" id="accDisiplin">
-                    <div class="accordion-item shadow-sm mb-2 border-0 rounded-3">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#qDis1">
-                                Sosyal Medya Kullanımında Kritik Sınır Nedir?
-                            </button>
-                        </h2>
-                        <div id="qDis1" class="accordion-collapse collapse" data-bs-parent="#accDisiplin">
-                            <div class="accordion-body text-secondary">
-                                Siyasi içerikli paylaşımlar ve dini değerleri tartışmaya açacak görseller <strong>"Hizmetle bağdaşmayan davranış"</strong> sayılabilir. Bu durum, hizmet sınıfı değişikliğine kadar giden cezalar doğurabilir.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="section-group mb-5" id="sec-nakil">
-    <h3 class="mb-4 fw-bold text-dark border-start border-4 border-success ps-3">Nakil ve Atama Esasları</h3>
-    <div class="accordion shadow-sm" id="accNakil">
-        <div class="accordion-item shadow-sm mb-2 border-0 rounded-3">
-            <h2 class="accordion-header">
-                <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#qNakil1">
-                    Cami Grupları Arası Geçişte "Süre" Şartı Nedir?
-                </button>
-            </h2>
-            <div id="qNakil1" class="accordion-collapse collapse" data-bs-parent="#accNakil">
-                <div class="accordion-body text-secondary">
-                    D grubu bir camiden C, B veya A grubu bir camiye atanabilmek için bulunduğunuz yerde en az <strong>2 yıl</strong> görev yapmanız gerekir. İl içi nakil sınavları genellikle her ayın ilk Salı günü yapılır.
-                </div>
-            </div>
-        </div>
-        <div class="accordion-item shadow-sm mb-2 border-0 rounded-3">
-            <h2 class="accordion-header">
-                <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#qNakil2">
-                    Hizmet Puanı Nasıl Hesaplanır?
-                </button>
-            </h2>
-            <div id="qNakil2" class="accordion-collapse collapse" data-bs-parent="#accNakil">
-                <div class="accordion-body text-secondary">
-                    Hizmet puanı; görev yapılan yerin mahrumiyet derecesi, görev süresi, eğitim durumu ve MBSTS puanının belirli oranlarla birleşimiyle oluşur. <strong>DİBBYS</strong> üzerinden güncel puanınızı takip edebilirsiniz.
-                </div>
-            </div>
         </div>
     </div>
-</div>
 
-<div class="section-group mb-5" id="sec-hac">
-    <h3 class="mb-4 fw-bold text-dark border-start border-4 border-success ps-3">Hac ve Umre Görevlendirmeleri</h3>
-    <div class="accordion shadow-sm" id="accHac">
-        <div class="accordion-item shadow-sm mb-2 border-0 rounded-3">
-            <h2 class="accordion-header">
-                <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#qHac1">
-                    Hac Görevlisi Seçim Kriterleri Nelerdir?
-                </button>
-            </h2>
-            <div id="qHac1" class="accordion-collapse collapse" data-bs-parent="#accHac">
-                <div class="accordion-body text-secondary">
-                    Hacca gitmek isteyen personelin öncelikle <strong>MBSTS</strong> barajını geçmesi, ardından yapılan mülakatta başarılı olması gerekir. Kıdem ve daha önce gitmemiş olmak tercih sebebidir.
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+    <footer class="text-center py-5 text-muted">
+        <p>&copy; 2026 Mevzuat Erişim Paneli - Güvenli Bilgi Hattı</p>
+    </footer>
 
-<div class="section-group mb-5" id="sec-dernek">
-    <h3 class="mb-4 fw-bold text-dark border-start border-4 border-success ps-3">Cami Dernekleri ve Yetki Sınırları</h3>
-    <div class="accordion shadow-sm" id="accDernek">
-        <div class="accordion-item shadow-sm mb-2 border-0 rounded-3">
-            <h2 class="accordion-header">
-                <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#qDernek1">
-                    Dernek Yönetimi Din Görevlisine Emir Verebilir mi?
-                </button>
-            </h2>
-            <div id="qDernek1" class="accordion-collapse collapse" data-bs-parent="#accDernek">
-                <div class="accordion-body text-secondary">
-                    <strong>Hayır.</strong> 633 Sayılı Kanun uyarınca din görevlisinin tek amiri Müftülüktür. Dernekler sadece caminin fiziki bakımı ve ihtiyaçları ile ilgilenir; personelin mesaisine veya dini görevine müdahale edemez.
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="section-group mb-5" id="sec-izinler">
-    <h3 class="mb-4 fw-bold text-dark border-start border-4 border-success ps-3">İzin ve Tatil Hakları</h3>
-    <div class="accordion shadow-sm" id="accIzin">
-        <div class="accordion-item shadow-sm mb-2 border-0 rounded-3">
-            <h2 class="accordion-header">
-                <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#qIzin1">
-                    Haftalık İzin Günü Değiştirilebilir mi?
-                </button>
-            </h2>
-            <div id="qIzin1" class="accordion-collapse collapse" data-bs-parent="#accIzin">
-                <div class="accordion-body text-secondary">
-                    Evet, müftülük onayı ile değiştirilebilir. Ancak kural olarak hafta tatili <strong>Cuma günü</strong> ve dini bayramların ilk günü kullandırılmaz.
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-        </div>
-    </main>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-<script>
-    // Dinamik Arama Fonksiyonu
-    function filterQA() {
-        let input = document.getElementById('dbSearch').value.toLowerCase();
-        let items = document.querySelectorAll('.accordion-item');
-        
-        items.forEach(item => {
-            let text = item.innerText.toLowerCase();
-            if (text.includes(input)) {
-                item.style.display = "block";
-            } else {
-                item.style.display = "none";
-            }
-        });
-    }
-</script>
 </body>
 </html>
