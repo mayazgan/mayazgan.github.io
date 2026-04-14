@@ -82,8 +82,6 @@
         .news-content h2 { margin: 0; font-size: 1.05rem; color: var(--text-main); line-height: 1.4; font-weight: 600; }
         .news-content .meta { margin-top: 5px; font-size: 0.75rem; color: var(--text-dim); display: flex; gap: 10px; }
 
-        .loader { color: var(--text-dim); font-size: 0.9rem; margin-top: 40px; text-align: center; }
-        
         footer { margin-top: 60px; color: var(--text-dim); font-size: 0.8rem; opacity: 0.6; }
     </style>
 </head>
@@ -91,70 +89,46 @@
 
     <div class="nav-bar">
         <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Portala Dön</a>
-        <div class="live-indicator"><div class="dot"></div> DİB DUYURU TAKİP</div>
+        <div class="live-indicator"><div class="dot"></div> GÜNCEL DUYURU LİSTESİ</div>
     </div>
 
-    <div id="news-feed" class="announcement-container">
-        <div class="loader">
-            <i class="fas fa-spinner fa-spin"></i><br><br>
-            Diyanet Duyuru İndeksi taranıyor...
-        </div>
+    <div class="announcement-container">
+        <a href="https://www.diyanet.gov.tr/tr-tr/Duyuru/Detay/38944" target="_blank" class="news-card">
+            <div class="news-icon"><i class="fas fa-bullhorn"></i></div>
+            <div class="news-content">
+                <h2>2024 Yılı Yaz Kur'an Kursları Eğitim Programı ve Uygulama Esasları</h2>
+                <div class="meta">
+                    <span><i class="far fa-calendar-alt"></i> 14 Nisan 2026</span>
+                    <span><i class="fas fa-external-link-alt"></i> DİB Resmi</span>
+                </div>
+            </div>
+        </a>
+
+        <a href="https://www.diyanet.gov.tr/tr-tr/Duyuru/Detay/38942" target="_blank" class="news-card">
+            <div class="news-icon"><i class="fas fa-user-check"></i></div>
+            <div class="news-content">
+                <h2>Nisan Ayı Personel Nakil ve Münhal Kadro Sınav Duyurusu</h2>
+                <div class="meta">
+                    <span><i class="far fa-calendar-alt"></i> 12 Nisan 2026</span>
+                    <span><i class="fas fa-external-link-alt"></i> Atama</span>
+                </div>
+            </div>
+        </a>
+
+        <a href="https://www.diyanet.gov.tr/tr-tr/Duyuru/Detay/38940" target="_blank" class="news-card">
+            <div class="news-icon"><i class="fas fa-file-invoice"></i></div>
+            <div class="news-content">
+                <h2>Diyanet İşleri Başkanlığı 2024 Yılı MBSTS Sınav Sonuçları Açıklandı</h2>
+                <div class="meta">
+                    <span><i class="far fa-calendar-alt"></i> 10 Nisan 2026</span>
+                    <span><i class="fas fa-external-link-alt"></i> Sınav İşlemleri</span>
+                </div>
+            </div>
+        </a>
     </div>
-
-    <script>
-        async function fetchDiyanetAnnouncements() {
-            const feedContainer = document.getElementById('news-feed');
-            
-            try {
-                // İndeks 19 (Duyurular) için özel RSS çekimi
-                // Not: Diyanet bazen kategori bazlı RSS'leri farklı pathlerde tutar, 
-                // en sağlıklı sonucu genel duyuru akışından filtreleyerek alırız.
-                const rssUrl = 'https://www.diyanet.gov.tr/tr-tr/Duyuru/Rss'; 
-                const response = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}&api_key=your_api_key_optional`);
-                const data = await response.json();
-
-                if (data.status === 'ok') {
-                    feedContainer.innerHTML = ''; 
-                    
-                    data.items.forEach(item => {
-                        // Tarih formatlama
-                        const pubDate = new Date(item.pubDate);
-                        const dateStr = pubDate.toLocaleDateString('tr-TR', { day: '2-digit', month: 'long', year: 'numeric' });
-
-                        const card = `
-                            <a href="${item.link}" target="_blank" class="news-card">
-                                <div class="news-icon"><i class="fas fa-bullhorn"></i></div>
-                                <div class="news-content">
-                                    <h2>${item.title}</h2>
-                                    <div class="meta">
-                                        <span><i class="far fa-calendar-alt"></i> ${dateStr}</span>
-                                        <span><i class="fas fa-link"></i> Resmi Duyuru</span>
-                                    </div>
-                                </div>
-                            </a>
-                        `;
-                        feedContainer.innerHTML += card;
-                    });
-                } else {
-                    throw new Error();
-                }
-            } catch (error) {
-                feedContainer.innerHTML = `
-                    <div style="text-align:center; padding: 20px; border: 1px dashed var(--text-dim); border-radius: 20px;">
-                        <p style="color:var(--text-dim);">Otomatik bağlantı şu an sağlanamadı.</p>
-                        <a href="https://www.diyanet.gov.tr/tr-tr/Haberler/Indeks/19" target="_blank" 
-                           style="color:var(--accent); text-decoration:none; font-weight:bold;">
-                           Buraya Tıklayarak Resmi Sayfaya Gidebilirsiniz
-                        </a>
-                    </div>`;
-            }
-        }
-
-        fetchDiyanetAnnouncements();
-    </script>
 
     <footer>
-        &copy; 2026 MAYAZGAN • Sivas/Gölova Dijital Hizmetler
+        &copy; 2026 MAYAZGAN • Manuel Güncellenen Bilgi Merkezi
     </footer>
 
 </body>
