@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dilekçe Merkezi | MAYAZGAN</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg: #020617;
+            --card-bg: #1e293b;
+            --accent: #10b981; /* Dilekçe için güven veren yeşil tonu */
+            --text-main: #f1f5f9;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            margin: 0; padding: 20px;
+            display: flex; flex-direction: column; align-items: center;
+        }
+
+        /* Ekran Tasarımı */
+        .container { width: 100%; max-width: 800px; }
+        .no-print { display: block; } /* Yazdırırken gizlenecek kısımlar */
+
+        .back-btn { color: #94a3b8; text-decoration: none; font-size: 0.9rem; margin-bottom: 20px; display: inline-block; }
+
+        .form-card {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 30px;
+        }
+
+        .input-group { margin-bottom: 15px; }
+        label { display: block; font-size: 0.85rem; color: #94a3b8; margin-bottom: 5px; }
+        input, textarea, select {
+            width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #334155;
+            background: #0f172a; color: white; outline: none; box-sizing: border-box;
+        }
+
+        .btn-print {
+            width: 100%; padding: 15px; background: var(--accent); border: none;
+            border-radius: 12px; color: white; font-weight: bold; cursor: pointer;
+            font-size: 1rem; transition: 0.3s;
+        }
+
+        /* YAZDIRMA FORMATI (A4 Kağıdı Gibi) */
+        @media print {
+            .no-print { display: none !important; }
+            body { background: white; color: black; padding: 0; }
+            .print-area {
+                display: block !important;
+                padding: 2cm;
+                line-height: 1.6;
+                font-family: "Times New Roman", Times, serif;
+                font-size: 12pt;
+            }
+        }
+
+        #preview-area {
+            display: none; /* Sadece yazdırırken veya önizlemede görünecek */
+            background: white; color: black; padding: 40px; border-radius: 10px;
+        }
+
+        .dilekce-baslik { text-align: center; font-weight: bold; margin-bottom: 40px; text-transform: uppercase; }
+        .dilekce-tarih { text-align: right; margin-bottom: 20px; }
+        .dilekce-imza { margin-top: 50px; text-align: right; float: right; width: 250px; }
+    </style>
+</head>
+<body>
+
+    <div class="container no-print">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Ana Sayfa</a>
+        
+        <div class="form-card">
+            <h1 style="color:var(--accent); margin-top:0;">Otomatik Dilekçe Hazırla</h1>
+            
+            <div class="input-group">
+                <label>Dilekçe Türü</label>
+                <select id="tip" onchange="sablonDegistir()">
+                    <option value="genel">Genel Amaçlı Dilekçe</option>
+                    <option value="izin">Yıllık İzin Talebi</option>
+                    <option value="tayin">Atama/Nakil Talebi</option>
+                    <option value="mazeret">Mazeret İzni</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label>Gideceği Makam (Örn: Sivas Valiliğine / İl Müftülüğüne)</label>
+                <input type="text" id="makam" placeholder="T.C. SİVAS VALİLİĞİNE">
+            </div>
+
+            <div class="input-group">
+                <label>Adınız Soyadınız</label>
+                <input type="text" id="adsoyad">
+            </div>
+
+            <div class="input-group">
+                <label>T.C. Kimlik No / Sicil No</label>
+                <input type="text" id="sicil">
+            </div>
+
+            <div class="input-group">
+                <label>Dilekçe Metni</label>
+                <textarea id="metin" rows="8"></textarea>
+            </div>
+
+            <button class="btn-print" onclick="yazdir()"><i class="fas fa-print"></i> HAZIRLA VE YAZDIR</button>
+        </div>
+    </div>
+
+    <div id="preview-area" class="print-area">
+        <div class="dilekce-tarih" id="p-tarih"></div>
+        <div class="dilekce-baslik" id="p-makam"></div>
+        <div id="p-metin" style="text-indent: 50px; text-align: justify;"></div>
+        
+        <div class="dilekce-imza">
+            <div id="p-adsoyad" style="font-weight: bold;"></div>
+            <div id="p-sicil" style="font-size: 0.9rem;"></div>
+            <br><br>
+            <span>(İmza)</span>
+        </div>
+
+        <div style="margin-top: 200px; font-size: 0.8rem; border-top: 1px solid #ccc; padding-top: 10px;">
+            <strong>Adres:</strong> <span id="p-adres">......................................................................</span>
+        </div>
+    </div>
+
+    <script>
+        function sablonDegistir() {
+            const tip = document.getElementById('tip').value;
+            const metin = document.getElementById('metin');
+            
+            const sablonlar = {
+                genel: "Kurumunuzda ... unvanı ile görev yapmaktayım. ... konusundaki talebimin değerlendirilerek gereğinin yapılmasını arz ederim.",
+                izin: "657 Sayılı Devlet Memurları Kanunu'nun ilgili maddesi uyarınca, 2026 yılına ait yıllık iznimden ... gün kullanmak istiyorum. Gereğini bilgilerinize arz ederim.",
+                tayin: "3+1 sözleşmeli statüde görev yapmaktayım. Mevzuatın tanıdığı haklar çerçevesinde, ekli belgelerde belirtilen mazeretime binaen Sivas İl Merkezine naklen atanma talebimin değerlendirilmesini arz ederim.",
+                mazeret: "... mazeretim nedeniyle ... tarihleri arasında mazeret izni kullanmak istiyorum. Bilgilerinize ve gereğine arz ederim."
+            };
+            
+            metin.value = sablonlar[tip];
+        }
+
+        function yazdir() {
+            // Verileri Al
+            document.getElementById('p-tarih').innerText = new Date().toLocaleDateString('tr-TR');
+            document.getElementById('p-makam').innerText = document.getElementById('makam').value;
+            document.getElementById('p-metin').innerText = document.getElementById('metin').value;
+            document.getElementById('p-adsoyad').innerText = document.getElementById('adsoyad').value;
+            document.getElementById('p-sicil').innerText = "Sicil/TC: " + document.getElementById('sicil').value;
+
+            // Yazdır
+            window.print();
+        }
+
+        // İlk açılışta şablonu yükle
+        sablonDegistir();
+    </script>
+
+</body>
+</html>
