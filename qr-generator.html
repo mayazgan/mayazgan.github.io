@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QR Oluşturucu | MAYAZGAN</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
         :root {
             --bg: #020617;
             --card-bg: #1e293b;
-            --accent: #f59e0b; /* Sarı/Turuncu tonu */
+            --accent: #f59e0b;
             --text-main: #f1f5f9;
             --text-dim: #94a3b8;
         }
@@ -28,11 +29,7 @@
             background-size: 30px 30px;
         }
 
-        .container {
-            width: 100%;
-            max-width: 500px;
-            margin-top: 50px;
-        }
+        .container { width: 100%; max-width: 500px; margin-top: 50px; }
 
         .back-btn {
             color: var(--text-dim);
@@ -56,20 +53,22 @@
 
         h1 { font-size: 1.5rem; margin-bottom: 20px; color: var(--accent); }
 
+        .input-group { margin-bottom: 20px; }
+
         input {
             width: 100%;
             padding: 15px;
             background: #0f172a;
-            border: 1px solid #334155;
+            border: 2px solid #334155;
             border-radius: 12px;
             color: white;
             font-size: 1rem;
-            margin-bottom: 20px;
             box-sizing: border-box;
             outline: none;
+            transition: 0.3s;
         }
 
-        input:focus { border-color: var(--accent); }
+        input:focus { border-color: var(--accent); box-shadow: 0 0 10px rgba(245, 158, 11, 0.2); }
 
         .btn-generate {
             width: 100%;
@@ -84,32 +83,23 @@
             transition: 0.3s;
         }
 
-        .btn-generate:hover { transform: scale(1.02); opacity: 0.9; }
+        .btn-generate:hover { transform: scale(1.02); background: #fbbf24; }
 
-        #qr-result {
+        #qrcode {
             margin-top: 30px;
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            animation: fadeIn 0.5s ease;
-        }
-
-        #qr-result img {
-            background: white;
-            padding: 15px;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            background: white; /* QR okuması için şart */
             border-radius: 15px;
-            box-shadow: 0 0 20px rgba(245, 158, 11, 0.2);
+            display: none; /* İlk başta gizli */
         }
 
-        .download-text {
+        .download-info {
+            display: none;
             margin-top: 15px;
             font-size: 0.8rem;
             color: var(--text-dim);
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
@@ -119,43 +109,54 @@
         <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Ana Sayfa</a>
 
         <div class="generator-card">
-            <h1>QR Oluşturucu</h1>
+            <h1>QR Kod Sihirbazı</h1>
             <p style="color: var(--text-dim); font-size: 0.85rem; margin-bottom: 20px;">
-                Link, metin veya telefon numarası yazıp QR kodunuzu anında alın.
+                Herhangi bir linki veya metni yazıp "Oluştur"a basın.
             </p>
             
-            <input type="text" id="qrText" placeholder="Buraya yazın (Örn: https://...)">
-            <button class="btn-generate" onclick="generateQR()">QR KOD OLUŞTUR</button>
-
-            <div id="qr-result">
-                <div id="qrcode"></div>
-                <p class="download-text">Telefonunuzla okutabilir veya ekran görüntüsü alabilirsiniz.</p>
+            <div class="input-group">
+                <input type="text" id="qrText" placeholder="https://www.google.com">
             </div>
+            
+            <button class="btn-generate" onclick="makeQR()">KODU OLUŞTUR</button>
+
+            <div id="qrcode"></div>
+            <p id="info" class="download-info">QR Kodunuz hazır! Üzerine basılı tutarak kaydedebilirsiniz.</p>
         </div>
     </div>
 
     <script>
-        function generateQR() {
-            const text = document.getElementById('qrText').value;
-            const resultDiv = document.getElementById('qr-result');
-            const qrContainer = document.getElementById('qrcode');
+        // QR Kod Nesnesini Hazırla
+        var qrcode = new QRCode(document.getElementById("qrcode"), {
+            width: 200,
+            height: 200,
+            colorDark : "#000000",
+            colorLight : "#ffffff",
+            correctLevel : QRCode.CorrectLevel.H
+        });
+
+        function makeQR() {
+            var elText = document.getElementById("qrText");
             
-            if (text.trim() === "") {
-                alert("Lütfen bir metin veya link girin!");
+            if (!elText.value) {
+                alert("Lütfen bir şeyler yazın!");
+                elText.focus();
                 return;
             }
 
-            // Google Chart API kullanarak QR oluşturuyoruz
-            const qrUrl = `https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=${encodeURIComponent(text)}&choe=UTF-8`;
+            // Önceki QR'ı temizle ve yenisini yap
+            qrcode.clear();
+            qrcode.makeCode(elText.value);
             
-            qrContainer.innerHTML = `<img src="${qrUrl}" alt="QR Code">`;
-            resultDiv.style.display = 'flex';
+            // Görünür yap
+            document.getElementById("qrcode").style.display = "flex";
+            document.getElementById("info").style.display = "block";
         }
 
-        // Enter tuşuna basınca da çalışsın
-        document.getElementById('qrText').addEventListener('keypress', function (e) {
-            if (e.key === 'Enter') {
-                generateQR();
+        // Enter tuşu desteği
+        document.getElementById("qrText").addEventListener("keyup", function(event) {
+            if (event.keyCode === 13) {
+                makeQR();
             }
         });
     </script>
