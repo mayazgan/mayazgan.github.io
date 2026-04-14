@@ -12,124 +12,121 @@
             --text-main: #f1f5f9;
             --text-dim: #64748b;
             --accent: #38bdf8;
-            --live-red: #ef4444;
         }
 
         body {
             background-color: var(--bg);
             color: var(--text-main);
-            font-family: 'Inter', -apple-system, sans-serif;
+            font-family: 'Inter', sans-serif;
             margin: 0;
             padding: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            min-height: 100vh;
             background-image: radial-gradient(#1e293b 0.5px, transparent 0.5px);
             background-size: 30px 30px;
         }
 
-        .nav-bar {
-            width: 100%;
-            max-width: 700px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-
-        .back-btn { color: var(--text-dim); text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; }
-        .back-btn:hover { color: var(--accent); }
-
-        .live-indicator { display: flex; align-items: center; gap: 6px; font-size: 0.8rem; font-weight: bold; color: var(--live-red); text-transform: uppercase; }
-        .dot { width: 8px; height: 8px; background-color: var(--live-red); border-radius: 50%; animation: pulse 1.5s infinite; }
-
-        @keyframes pulse { 0% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.5); opacity: 0.5; } 100% { transform: scale(1); opacity: 1; } }
-
+        .nav-bar { width: 100%; max-width: 700px; display: flex; justify-content: space-between; margin-bottom: 30px; }
+        .back-btn { color: var(--text-dim); text-decoration: none; font-size: 0.9rem; }
+        
         .announcement-container { width: 100%; max-width: 700px; display: flex; flex-direction: column; gap: 12px; }
 
         .news-card {
             background: rgba(30, 41, 59, 0.7);
             backdrop-filter: blur(10px);
             border: 2px solid rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
+            border-radius: 18px;
             padding: 18px;
             text-decoration: none;
-            display: grid;
-            grid-template-columns: 60px 1fr;
+            display: flex;
             gap: 15px;
-            transition: all 0.3s ease;
+            transition: 0.3s;
         }
 
-        .news-card:hover {
-            transform: translateX(10px);
-            border-color: var(--accent);
-            background: var(--card-bg);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-        }
+        .news-card:hover { transform: translateX(8px); border-color: var(--accent); background: var(--card-bg); }
 
         .news-icon {
-            width: 60px;
-            height: 60px;
-            background: rgba(56, 189, 248, 0.1);
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.4rem;
-            color: var(--accent);
+            min-width: 50px; height: 50px; background: rgba(56, 189, 248, 0.1);
+            border-radius: 12px; display: flex; align-items: center; justify-content: center;
+            color: var(--accent); font-size: 1.2rem;
         }
 
-        .news-content h2 { margin: 0; font-size: 1.05rem; color: var(--text-main); line-height: 1.4; font-weight: 600; }
-        .news-content .meta { margin-top: 5px; font-size: 0.75rem; color: var(--text-dim); display: flex; gap: 10px; }
+        .news-content h2 { margin: 0; font-size: 1rem; color: var(--text-main); line-height: 1.4; }
+        .news-content .date { font-size: 0.75rem; color: var(--text-dim); margin-top: 5px; display: block; }
 
-        footer { margin-top: 60px; color: var(--text-dim); font-size: 0.8rem; opacity: 0.6; }
+        #status-msg { color: var(--text-dim); margin-top: 40px; text-align: center; }
+        .spinner { animation: spin 1s linear infinite; margin-bottom: 10px; }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
     </style>
 </head>
 <body>
 
     <div class="nav-bar">
-        <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Portala Dön</a>
-        <div class="live-indicator"><div class="dot"></div> GÜNCEL DUYURU LİSTESİ</div>
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Geri</a>
+        <span style="font-size: 0.8rem; color: var(--accent); font-weight: bold;">DİYANET DUYURU AKIŞI</span>
     </div>
 
-    <div class="announcement-container">
-        <a href="https://www.diyanet.gov.tr/tr-tr/Duyuru/Detay/38944" target="_blank" class="news-card">
-            <div class="news-icon"><i class="fas fa-bullhorn"></i></div>
-            <div class="news-content">
-                <h2>2024 Yılı Yaz Kur'an Kursları Eğitim Programı ve Uygulama Esasları</h2>
-                <div class="meta">
-                    <span><i class="far fa-calendar-alt"></i> 14 Nisan 2026</span>
-                    <span><i class="fas fa-external-link-alt"></i> DİB Resmi</span>
-                </div>
-            </div>
-        </a>
-
-        <a href="https://www.diyanet.gov.tr/tr-tr/Duyuru/Detay/38942" target="_blank" class="news-card">
-            <div class="news-icon"><i class="fas fa-user-check"></i></div>
-            <div class="news-content">
-                <h2>Nisan Ayı Personel Nakil ve Münhal Kadro Sınav Duyurusu</h2>
-                <div class="meta">
-                    <span><i class="far fa-calendar-alt"></i> 12 Nisan 2026</span>
-                    <span><i class="fas fa-external-link-alt"></i> Atama</span>
-                </div>
-            </div>
-        </a>
-
-        <a href="https://www.diyanet.gov.tr/tr-tr/Duyuru/Detay/38940" target="_blank" class="news-card">
-            <div class="news-icon"><i class="fas fa-file-invoice"></i></div>
-            <div class="news-content">
-                <h2>Diyanet İşleri Başkanlığı 2024 Yılı MBSTS Sınav Sonuçları Açıklandı</h2>
-                <div class="meta">
-                    <span><i class="far fa-calendar-alt"></i> 10 Nisan 2026</span>
-                    <span><i class="fas fa-external-link-alt"></i> Sınav İşlemleri</span>
-                </div>
-            </div>
-        </a>
+    <div id="news-feed" class="announcement-container">
+        <div id="status-msg">
+            <i class="fas fa-circle-notch spinner"></i><br>
+            Veriler Diyanet üzerinden çekiliyor...
+        </div>
     </div>
 
-    <footer>
-        &copy; 2026 MAYAZGAN • Manuel Güncellenen Bilgi Merkezi
-    </footer>
+    <script>
+        async function fetchNews() {
+            const feed = document.getElementById('news-feed');
+            const status = document.getElementById('status-msg');
+            
+            // Diyanet Duyurular (İndeks 19) RSS linki
+            const rssUrl = 'https://www.diyanet.gov.tr/tr-tr/Duyuru/Rss/19';
+            // AllOrigins Proxy kullanarak CORS engelini aşıyoruz
+            const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(rssUrl)}`;
+
+            try {
+                const response = await fetch(proxyUrl);
+                const data = await response.json();
+                
+                // AllOrigins datayı string olarak döndürür, onu XML olarak parse etmeliyiz
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(data.contents, "text/xml");
+                const items = xmlDoc.querySelectorAll("item");
+
+                if (items.length > 0) {
+                    feed.innerHTML = ''; // Temizle
+                    items.forEach(item => {
+                        const title = item.querySelector("title").textContent;
+                        const link = item.querySelector("link").textContent;
+                        const pubDate = item.querySelector("pubDate") ? item.querySelector("pubDate").textContent : "";
+                        
+                        const card = `
+                            <a href="${link}" target="_blank" class="news-card">
+                                <div class="news-icon"><i class="fas fa-bullhorn"></i></div>
+                                <div class="news-content">
+                                    <h2>${title}</h2>
+                                    <span class="date"><i class="far fa-calendar-alt"></i> ${pubDate.split(' 00:00')[0]}</span>
+                                </div>
+                            </a>
+                        `;
+                        feed.innerHTML += card;
+                    });
+                } else {
+                    throw new Error("Veri boş geldi");
+                }
+            } catch (e) {
+                status.innerHTML = `
+                    <p style="color:#94a3b8;">Bağlantı sağlanamadı.</p>
+                    <a href="https://www.diyanet.gov.tr/tr-tr/Haberler/Indeks/19" target="_blank" 
+                       style="display:inline-block; padding:10px 20px; background:var(--accent); color:#000; border-radius:10px; text-decoration:none; font-weight:bold; margin-top:10px;">
+                       RESMİ SAYFAYA GİT
+                    </a>`;
+            }
+        }
+
+        fetchNews();
+    </script>
 
 </body>
 </html>
