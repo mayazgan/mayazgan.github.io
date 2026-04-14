@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mevzuat Ansiklopedisi | MAYAZGAN</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg: #020617;
+            --card-bg: #1e293b;
+            --accent: #38bdf8; /* Mevzuat için bilgi veren mavi tonu */
+            --text-main: #f1f5f9;
+            --text-dim: #94a3b8;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            margin: 0; padding: 20px;
+            display: flex; flex-direction: column; align-items: center;
+        }
+
+        .container { width: 100%; max-width: 900px; }
+
+        .back-btn {
+            color: var(--text-dim);
+            text-decoration: none;
+            display: flex; align-items: center; gap: 8px;
+            margin-bottom: 30px; font-size: 0.9rem;
+        }
+
+        header { text-align: center; margin-bottom: 40px; }
+        header h1 { color: var(--accent); margin: 0; font-size: 2.2rem; }
+        header p { color: var(--text-dim); margin-top: 10px; }
+
+        /* Arama Çubuğu */
+        .search-box {
+            position: relative;
+            margin-bottom: 40px;
+        }
+        .search-box input {
+            width: 100%; padding: 15px 20px 15px 50px;
+            background: var(--card-bg);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 15px; color: white; outline: none;
+            font-size: 1rem;
+        }
+        .search-box i { position: absolute; left: 20px; top: 18px; color: var(--accent); }
+
+        /* Bölüm (Section) Yapısı */
+        .mevzuat-section {
+            background: var(--card-bg);
+            border-radius: 20px;
+            margin-bottom: 25px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .section-header {
+            padding: 20px 25px;
+            background: rgba(255,255,255,0.03);
+            display: flex; align-items: center; gap: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .section-header i { font-size: 1.5rem; color: var(--accent); }
+        .section-header h2 { margin: 0; font-size: 1.2rem; letter-spacing: 0.5px; }
+
+        /* Soru-Cevap (Accordion) */
+        .accordion-item {
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .accordion-btn {
+            width: 100%; padding: 18px 25px;
+            background: none; border: none;
+            color: var(--text-main); text-align: left;
+            display: flex; justify-content: space-between; align-items: center;
+            cursor: pointer; font-size: 1rem; transition: 0.3s;
+        }
+        .accordion-btn:hover { background: rgba(255,255,255,0.02); }
+        .accordion-content {
+            max-height: 0; overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background: rgba(0,0,0,0.2);
+        }
+        .inner-text { padding: 20px 25px; color: var(--text-dim); line-height: 1.6; font-size: 0.95rem; }
+        .inner-text strong { color: var(--text-main); }
+
+        .active .accordion-content { max-height: 500px; }
+        .active .fa-chevron-down { transform: rotate(180deg); color: var(--accent); }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Portala Dön</a>
+
+        <header>
+            <h1>Mevzuat Ansiklopedisi</h1>
+            <p>Memuriyet hakları, izinler ve resmi süreçler hakkında güncel bilgiler.</p>
+        </header>
+
+        <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" id="searchInput" onkeyup="searchMevzuat()" placeholder="Konu, anahtar kelime veya madde ara...">
+        </div>
+
+        <div class="mevzuat-section">
+            <div class="section-header">
+                <i class="fas fa-user-tie"></i>
+                <h2>3+1 Sözleşmeli Personel Statüsü</h2>
+            </div>
+            
+            <div class="accordion-item">
+                <button class="accordion-btn">
+                    3+1 sisteminde tayin hakkı ne zaman doğar?
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="accordion-content">
+                    <div class="inner-text">
+                        Sözleşmeli olarak <strong>3 yıl</strong> çalıştıktan sonra kadroya geçiş yapılır. Kadroya geçtikten sonra aynı yerde <strong>1 yıl</strong> daha (toplamda 4 yıl) görev yapma şartı aranır. Bu süre dolmadan isteğe bağlı yer değişikliği yapılamaz.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-btn">
+                    Eş durumu tayini için bekleme süresi var mıdır?
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="accordion-content">
+                    <div class="inner-text">
+                        Eş durumu tayininde kural olarak sözleşmeli personelin <strong>1 yıl</strong> çalışma şartı vardır. Ancak eşin de kamu personeli olması ve stratejik bir unvanda bulunması gibi mazeretlerde kurumun özel yönetmeliği esas alınır.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mevzuat-section">
+            <div class="section-header">
+                <i class="fas fa-calendar-check"></i>
+                <h2>İzin ve Mazeret Hakları</h2>
+            </div>
+            
+            <div class="accordion-item">
+                <button class="accordion-btn">
+                    Yıllık izin hakkı ne zaman başlar?
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="accordion-content">
+                    <div class="inner-text">
+                        Devlet memurları, göreve başladıktan <strong>1 yıl sonra</strong> yıllık izin hakkı kazanır. 1 yıldan 10 yıla kadar hizmeti olanların <strong>20 gün</strong>, 10 yıldan fazla olanların <strong>30 gün</strong> izni vardır.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-btn">
+                    Babalık izni kaç gündür?
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="accordion-content">
+                    <div class="inner-text">
+                        Eşi doğum yapan memura, isteği üzerine <strong>10 gün</strong> babalık izni verilir. Bu izin, doğumun gerçekleştiği tarihten itibaren başlar.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mevzuat-section">
+            <div class="section-header">
+                <i class="fas fa-lira-sign"></i>
+                <h2>Özlük ve Mali Haklar</h2>
+            </div>
+            
+            <div class="accordion-item">
+                <button class="accordion-btn">
+                    Derece ve kademe ilerlemesi nasıl olur?
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="accordion-content">
+                    <div class="inner-text">
+                        Normal şartlarda her <strong>1 yıl</strong> dolduğunda 1 kademe, her <strong>3 yıl</strong> dolduğunda 1 derece ilerlemesi yapılır. Disiplin cezası almayan memurlara 8 yılda bir ilave kademe verilir.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Accordion Açma/Kapama
+        const btns = document.querySelectorAll('.accordion-btn');
+        btns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.parentElement.classList.toggle('active');
+            });
+        });
+
+        // Basit Arama Fonksiyonu
+        function searchMevzuat() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let items = document.querySelectorAll('.accordion-item');
+            
+            items.forEach(item => {
+                let text = item.innerText.toLowerCase();
+                if (text.includes(input)) {
+                    item.style.display = "block";
+                } else {
+                    item.style.display = "none";
+                }
+            });
+        }
+    </script>
+</body>
+</html>
