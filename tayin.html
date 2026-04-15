@@ -8,100 +8,153 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
-            --mayazgan-green: #00ff88;
-            --dark-panel: #111827;
-            --text-high: #ffffff;
-            --text-low: #9ca3af;
-        }
-        body { 
-            background-color: #030712; 
-            color: var(--text-high); 
-            font-family: 'Roboto', sans-serif; 
-            padding: 20px 0;
-        }
-        .container { max-width: 750px; }
-        
-        .brand-header {
-            font-family: 'Orbitron', sans-serif;
-            letter-spacing: 10px;
-            color: var(--mayazgan-green);
-            text-shadow: 0 0 10px rgba(0,255,136,0.3);
-            font-weight: 900;
-            margin-bottom: 30px;
-        }
+    :root {
+        --mayazgan-green: #00ff88;
+        --mayazgan-dark-green: #00bd68;
+        --bg-deep: #05070a;
+        --card-bg: #0f141e;
+        --input-bg: #05070a;
+        --border-color: #1e293b;
+        --text-high: #ffffff;
+        --text-low: #94a3b8;
+    }
 
-        /* Okunabilirliği Artırılmış Panel */
-        .main-card {
-            background: var(--dark-panel);
-            border: 2px solid #1f2937;
-            border-radius: 20px;
-            padding: 35px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-        }
+    body { 
+        background-color: var(--bg-deep); 
+        color: var(--text-high); 
+        font-family: 'Inter', 'Roboto', sans-serif; 
+        padding: 40px 0;
+        line-height: 1.6;
+    }
 
-        .section-label {
-            color: var(--mayazgan-green);
-            font-size: 0.8rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 10px;
-            display: block;
-        }
+    .container { max-width: 800px; }
+    
+    .brand-header {
+        font-family: 'Orbitron', sans-serif;
+        letter-spacing: 12px;
+        color: var(--mayazgan-green);
+        text-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
+        font-weight: 900;
+        margin-bottom: 40px;
+        text-align: center;
+    }
 
-        .custom-input {
-            background: #030712;
-            border: 2px solid #374151;
-            color: white !important;
-            border-radius: 12px;
-            padding: 12px;
-            font-weight: 700;
-        }
-        .custom-input:focus {
-            border-color: var(--mayazgan-green);
-            box-shadow: none;
-            background: #000;
-        }
+    /* Ana Panel - Derinlik ve Kontrast Artırıldı */
+    .main-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 28px;
+        padding: 45px;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+    }
 
-        .military-zone {
-            background: rgba(0,0,0,0.3);
-            border: 1px dashed #374151;
-            border-radius: 15px;
-            padding: 20px;
-            margin: 20px 0;
-        }
+    .section-label {
+        color: var(--mayazgan-green);
+        font-size: 0.75rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
 
-        .btn-mayazgan {
-            background: var(--mayazgan-green);
-            color: #000;
-            font-weight: 900;
-            font-family: 'Orbitron', sans-serif;
-            padding: 18px;
-            border-radius: 12px;
-            border: none;
-            width: 100%;
-            margin-top: 20px;
-            transition: 0.3s;
-        }
-        .btn-mayazgan:hover { background: #00cc6d; transform: scale(1.01); }
+    /* Input Alanları - Net Okunabilirlik */
+    .custom-input {
+        background: var(--input-bg) !important;
+        border: 2px solid var(--border-color) !important;
+        color: var(--text-high) !important;
+        border-radius: 14px !important;
+        padding: 14px !important;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
 
-        .report-item {
-            background: #1f2937;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 15px;
-            border-left: 6px solid #374151;
-        }
-        .report-ok { border-left-color: var(--mayazgan-green); }
-        .report-wait { border-left-color: #f59e0b; }
-        .report-no { border-left-color: #ef4444; }
+    .custom-input:focus {
+        border-color: var(--mayazgan-green) !important;
+        box-shadow: 0 0 15px rgba(0, 255, 136, 0.15) !important;
+        background-color: #000 !important;
+        outline: none;
+    }
 
-        .muktesep-btn {
-            color: #60efff;
-            text-decoration: underline;
-            font-weight: 700;
-        }
+    /* Askerlik Bölgesi - Özel Vurgu */
+    .military-zone {
+        background: rgba(0, 0, 0, 0.25);
+        border: 1px solid var(--border-color);
+        border-radius: 20px;
+        padding: 25px;
+        margin: 30px 0;
+    }
+
+    /* Hesapla Butonu - Premium Görünüm */
+    .btn-mayazgan {
+        background: linear-gradient(135deg, var(--mayazgan-green), var(--mayazgan-dark-green));
+        color: #000;
+        font-weight: 900;
+        font-family: 'Orbitron', sans-serif;
+        letter-spacing: 3px;
+        padding: 20px;
+        border-radius: 16px;
+        border: none;
+        width: 100%;
+        margin-top: 25px;
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        box-shadow: 0 10px 20px rgba(0, 255, 136, 0.2);
+        text-transform: uppercase;
+    }
+
+    .btn-mayazgan:hover { 
+        background: var(--mayazgan-green); 
+        transform: translateY(-3px);
+        box-shadow: 0 15px 30px rgba(0, 255, 136, 0.4);
+    }
+
+    /* Rapor Maddeleri - Keskinleştirilmiş Durumlar */
+    .report-item {
+        background: #161d29;
+        border-radius: 18px;
+        padding: 22px;
+        margin-bottom: 18px;
+        border-left: 5px solid var(--border-color);
+        display: flex;
+        align-items: center;
+        transition: transform 0.3s ease;
+    }
+
+    .report-item:hover {
+        transform: translateX(8px);
+    }
+
+    .report-ok { border-left-color: var(--mayazgan-green); }
+    .report-wait { border-left-color: #f59e0b; }
+    .report-no { border-left-color: #ef4444; }
+
+    .report-item span {
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: var(--text-high);
+    }
+
+    /* Müktesep Bağlantısı */
+    .muktesep-btn {
+        color: #60efff;
+        text-decoration: none;
+        font-weight: 700;
+        border-bottom: 1px dashed #60efff;
+        transition: 0.3s;
+    }
+
+    .muktesep-btn:hover {
+        color: var(--mayazgan-green);
+        border-bottom-color: var(--mayazgan-green);
+    }
+
+    /* Scrollbar Güzelleştirme */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--bg-deep); }
+    ::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 10px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--mayazgan-green); }
     </style>
 </head>
 <body>
