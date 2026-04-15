@@ -233,7 +233,7 @@
         if(netLocDays >= 182) {
             render("fa-check-circle", "Şehir içi yer değişikliği hakkınız aktif.", "report-ok");
             if(mbsts >= 50) {
-                render("fa-file-signature", `MBSTS yeterli. <a href="muktesep.html" class="muktesep-btn">Müktesep</a> uygunsa DİBBYS, değilse 18/A dilekçesi verilebilir.`, "report-ok");
+                render("fa-file-signature", `MBSTS yeterli. <a href="/muktesep-hesaplama" class="muktesep-btn">Müktesep</a> uygunsa DİBBYS, değilse 18/A dilekçesi verilebilir.`, "report-ok");
             } else {
                 render("fa-ban", "MBSTS 50 altı: Tercih veya dilekçe hakkı bulunmuyor.", "report-no");
             }
