@@ -3,207 +3,189 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MAYAZGAN | Kesin Mevzuat Analizi</title>
+    <title>MAYAZGAN | Kesin Mevzuat Analizörü</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-    :root {
-        --mayazgan-green: #00ff88;
-        --mayazgan-dark-green: #00bd68;
-        --bg-deep: #05070a;
-        --card-bg: #0f141e;
-        --input-bg: #05070a;
-        --border-color: #1e293b;
-        --text-high: #ffffff;
-        --text-low: #94a3b8;
-    }
+        :root {
+            --mayazgan-green: #00ff88;
+            --mayazgan-dark-green: #00bd68;
+            --bg-deep: #05070a;
+            --card-bg: #0f141e;
+            --input-bg: #05070a;
+            --border-color: #1e293b;
+            --text-high: #ffffff;
+            --text-low: #cbd5e1; /* Beyaza yakın gri */
+        }
 
-    body { 
-        background-color: var(--bg-deep); 
-        color: var(--text-high); 
-        font-family: 'Inter', 'Roboto', sans-serif; 
-        padding: 40px 0;
-        line-height: 1.6;
-    }
+        body { 
+            background-color: var(--bg-deep); 
+            color: var(--text-high); 
+            font-family: 'Inter', sans-serif; 
+            padding: 40px 0;
+            line-height: 1.6;
+        }
 
-    .container { max-width: 800px; }
-    
-    .brand-header {
-        font-family: 'Orbitron', sans-serif;
-        letter-spacing: 12px;
-        color: var(--mayazgan-green);
-        text-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
-        font-weight: 900;
-        margin-bottom: 40px;
-        text-align: center;
-    }
+        .container { max-width: 800px; }
+        
+        .brand-header {
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 12px;
+            color: var(--mayazgan-green);
+            text-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
+            font-weight: 900;
+            margin-bottom: 40px;
+            text-align: center;
+        }
 
-    /* Ana Panel - Derinlik ve Kontrast Artırıldı */
-    .main-card {
-        background: var(--card-bg);
-        border: 1px solid var(--border-color);
-        border-radius: 28px;
-        padding: 45px;
-        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
-    }
+        .main-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 28px;
+            padding: 45px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+        }
 
-    .section-label {
-        color: var(--mayazgan-green);
-        font-size: 0.75rem;
-        font-weight: 800;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        margin-bottom: 12px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
+        .section-label {
+            color: var(--mayazgan-green);
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
 
-    /* Input Alanları - Net Okunabilirlik */
-    .custom-input {
-        background: var(--input-bg) !important;
-        border: 2px solid var(--border-color) !important;
-        color: var(--text-high) !important;
-        border-radius: 14px !important;
-        padding: 14px !important;
-        font-weight: 600;
-        transition: all 0.3s ease;
-    }
+        .custom-input {
+            background: var(--input-bg) !important;
+            border: 2px solid var(--border-color) !important;
+            color: var(--text-high) !important;
+            border-radius: 14px !important;
+            padding: 14px !important;
+            font-weight: 600;
+        }
 
-    .custom-input:focus {
-        border-color: var(--mayazgan-green) !important;
-        box-shadow: 0 0 15px rgba(0, 255, 136, 0.15) !important;
-        background-color: #000 !important;
-        outline: none;
-    }
+        .custom-input:focus {
+            border-color: var(--mayazgan-green) !important;
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.15) !important;
+            outline: none;
+        }
 
-    /* Askerlik Bölgesi - Özel Vurgu */
-    .military-zone {
-        background: rgba(0, 0, 0, 0.25);
-        border: 1px solid var(--border-color);
-        border-radius: 20px;
-        padding: 25px;
-        margin: 30px 0;
-    }
+        .info-text {
+            color: var(--text-low);
+            font-size: 0.75rem;
+            font-weight: 500;
+            margin-top: 5px;
+            display: block;
+        }
 
-    /* Hesapla Butonu - Premium Görünüm */
-    .btn-mayazgan {
-        background: linear-gradient(135deg, var(--mayazgan-green), var(--mayazgan-dark-green));
-        color: #000;
-        font-weight: 900;
-        font-family: 'Orbitron', sans-serif;
-        letter-spacing: 3px;
-        padding: 20px;
-        border-radius: 16px;
-        border: none;
-        width: 100%;
-        margin-top: 25px;
-        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        box-shadow: 0 10px 20px rgba(0, 255, 136, 0.2);
-        text-transform: uppercase;
-    }
+        .military-zone {
+            background: rgba(0, 0, 0, 0.25);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 25px;
+            margin: 30px 0;
+        }
 
-    .btn-mayazgan:hover { 
-        background: var(--mayazgan-green); 
-        transform: translateY(-3px);
-        box-shadow: 0 15px 30px rgba(0, 255, 136, 0.4);
-    }
+        .btn-mayazgan {
+            background: linear-gradient(135deg, var(--mayazgan-green), var(--mayazgan-dark-green));
+            color: #000;
+            font-weight: 900;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 3px;
+            padding: 20px;
+            border-radius: 16px;
+            border: none;
+            width: 100%;
+            margin-top: 25px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 255, 136, 0.2);
+        }
 
-    /* Rapor Maddeleri - Keskinleştirilmiş Durumlar */
-    .report-item {
-        background: #161d29;
-        border-radius: 18px;
-        padding: 22px;
-        margin-bottom: 18px;
-        border-left: 5px solid var(--border-color);
-        display: flex;
-        align-items: center;
-        transition: transform 0.3s ease;
-    }
+        .btn-mayazgan:hover { 
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 255, 136, 0.4);
+            filter: brightness(1.1);
+        }
 
-    .report-item:hover {
-        transform: translateX(8px);
-    }
+        .report-item {
+            background: #161d29;
+            border-radius: 18px;
+            padding: 22px;
+            margin-bottom: 18px;
+            border-left: 6px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
 
-    .report-ok { border-left-color: var(--mayazgan-green); }
-    .report-wait { border-left-color: #f59e0b; }
-    .report-no { border-left-color: #ef4444; }
+        .report-ok { border-left-color: var(--mayazgan-green); }
+        .report-wait { border-left-color: #f59e0b; }
+        .report-no { border-left-color: #ef4444; }
 
-    .report-item span {
-        font-size: 0.95rem;
-        font-weight: 600;
-        color: var(--text-high);
-    }
+        .report-item i { font-size: 1.4rem; }
+        .report-ok i { color: var(--mayazgan-green); }
+        .report-wait i { color: #f59e0b; }
+        .report-no i { color: #ef4444; }
 
-    /* Müktesep Bağlantısı */
-    .muktesep-btn {
-        color: #60efff;
-        text-decoration: none;
-        font-weight: 700;
-        border-bottom: 1px dashed #60efff;
-        transition: 0.3s;
-    }
-
-    .muktesep-btn:hover {
-        color: var(--mayazgan-green);
-        border-bottom-color: var(--mayazgan-green);
-    }
-
-    /* Scrollbar Güzelleştirme */
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: var(--bg-deep); }
-    ::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 10px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--mayazgan-green); }
+        .muktesep-btn {
+            color: #60efff;
+            text-decoration: none;
+            font-weight: 700;
+            border-bottom: 1px dashed #60efff;
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <div class="text-center">
-        <h1 class="brand-header">MAYAZGAN</h1>
-        <p class="text-muted small mb-4">GELİŞMİŞ TAYİN HESAPLAMA SİSTEMİ</p>
-    </div>
+    <div class="brand-header">MAYAZGAN</div>
 
     <div class="main-card">
-        <div class="row g-3">
-            <div class="col-md-6">
-                <label class="section-label">📍 Bulunulan Yer Başlama</label>
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <label class="section-label"><i class="fas fa-map-pin"></i> Bulunulan Yer Başlama</label>
                 <input type="date" id="locStart" class="form-control custom-input">
+                <span class="info-text">Şehir içi ve il dışı tayin süreleri için.</span>
             </div>
-            <div class="col-md-6">
-                <label class="section-label">🕌 Diyanet Görev Başlangıcı</label>
+            <div class="col-md-6 mb-4">
+                <label class="section-label"><i class="fas fa-mosque"></i> Diyanet Görev Başlangıcı</label>
                 <input type="date" id="dibStart" class="form-control custom-input">
+                <span class="info-text">3+1 Sözleşme ve kadro hakları için.</span>
             </div>
-
-            <div class="col-12 military-zone">
-                <label class="section-label text-white mb-3"><i class="fas fa-user-shield me-2"></i>Askerlik Bilgileri</label>
-                <div class="row g-3">
-                    <div class="col-md-4">
-                        <label class="small text-muted">Askere Gidiş</label>
-                        <input type="date" id="milGo" class="form-control custom-input">
-                    </div>
-                    <div class="col-md-4">
-                        <label class="small text-muted">Göreve Dönüş</label>
-                        <input type="date" id="milReturn" class="form-control custom-input">
-                    </div>
-                    <div class="col-md-4">
-                        <label class="small text-muted">Askerlik Sonrası İzin (Gün)</label>
-                        <input type="number" id="milLeave" class="form-control custom-input" placeholder="Maks 30" max="30">
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12">
-                <label class="section-label">⭐ MBSTS Puanı</label>
-                <input type="number" id="mbsts" class="form-control custom-input" placeholder="Puanınızı girin">
-            </div>
-
-            <button onclick="hesapla()" class="btn btn-mayazgan">ANALİZİ BAŞLAT</button>
         </div>
 
+        <div class="military-zone">
+            <label class="section-label mb-3" style="color: #fff;"><i class="fas fa-shield-alt"></i> Askerlik & İzin Süreci</label>
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <label class="info-text mb-1">Askere Gidiş</label>
+                    <input type="date" id="milGo" class="form-control custom-input">
+                </div>
+                <div class="col-md-4">
+                    <label class="info-text mb-1">Göreve Dönüş</label>
+                    <input type="date" id="milReturn" class="form-control custom-input">
+                </div>
+                <div class="col-md-4">
+                    <label class="info-text mb-1">Dönüş İzni (Maks 30 Gün)</label>
+                    <input type="number" id="milLeave" class="form-control custom-input" placeholder="0">
+                </div>
+            </div>
+            <span class="info-text mt-3 text-center">Not: Askerlik görev süresi içindeyse süre net hesaptan düşülür.</span>
+        </div>
+
+        <div class="mb-4">
+            <label class="section-label"><i class="fas fa-star"></i> MBSTS Puanı</label>
+            <input type="number" id="mbsts" class="form-control custom-input" placeholder="Puanınızı girin">
+        </div>
+
+        <button onclick="hesapla()" class="btn btn-mayazgan">ANALİZİ BAŞLAT</button>
+
         <div id="results" class="mt-5" style="display: none;">
-            <h5 class="fw-bold mb-3 border-bottom pb-2">HAKLARINIZ VE DURUMUNUZ</h5>
+            <h5 class="text-uppercase fw-bold mb-4" style="letter-spacing: 2px; font-size: 0.9rem;">Analiz Raporu</h5>
             <div id="output"></div>
         </div>
     </div>
@@ -213,68 +195,69 @@
     function hesapla() {
         const locVal = document.getElementById('locStart').value;
         const dibVal = document.getElementById('dibStart').value;
-        const milGo = document.getElementById('milGo').value;
-        const milReturn = document.getElementById('milReturn').value;
-        const milLeave = parseInt(document.getElementById('milLeave').value) || 0;
+        const mGo = document.getElementById('milGo').value;
+        const mRet = document.getElementById('milReturn').value;
+        const mLeave = parseInt(document.getElementById('milLeave').value) || 0;
         const mbsts = parseInt(document.getElementById('mbsts').value) || 0;
 
-        if(!locVal || !dibVal) return alert("Hocam başlangıç tarihlerini girin.");
+        if(!locVal || !dibVal) { alert("Ana tarihleri girmelisiniz hoca."); return; }
 
         const today = new Date();
         const oneDay = 1000 * 60 * 60 * 24;
+        const locStart = new Date(locVal);
+        const dibStart = new Date(dibVal);
 
-        // Askerlik Süresi Hesaplama
-        let milDuration = 0;
-        if(milGo && milReturn) {
-            milDuration = (new Date(milReturn) - new Date(milGo)) / oneDay;
+        let locDeduction = 0;
+        let dibDeduction = 0;
+
+        if(mGo && mRet) {
+            const milS = new Date(mGo);
+            const milE = new Date(mRet);
+            const milDuration = (milE - milS) / oneDay;
+            const leaveDays = Math.min(mLeave, 30);
+            const totalOut = milDuration + leaveDays;
+
+            // Askerlik görev süresi içerisinde ise düş
+            if(milS >= locStart) locDeduction = totalOut;
+            if(milS >= dibStart) dibDeduction = totalOut;
         }
-        
-        // Toplam Düşülecek Süre: Askerlik süresi + Kullanılan İzin (Maks 30)
-        let totalOutTime = milDuration + Math.min(milLeave, 30);
 
-        // Net Yer Süresi (6 ay ve 2 yıl için)
-        let netLocDays = Math.ceil((today - new Date(locVal)) / oneDay) - totalOutTime;
-        let netDibDays = Math.ceil((today - new Date(dibVal)) / oneDay) - totalOutTime;
+        const netLocDays = Math.ceil((today - locStart) / oneDay) - locDeduction;
+        const netDibDays = Math.ceil((today - dibStart) / oneDay) - dibDeduction;
 
         document.getElementById('results').style.display = 'block';
         const out = document.getElementById('output');
         out.innerHTML = "";
 
-        const hasPuan = mbsts >= 50;
-
-        // 1. Şehir İçi (6 Ay Kuralı)
-        // 6 ay (182 gün) üzerine 1 ay (30 gün) izin payıyla 7 ay (212 gün) üzerinden de kontrol
+        // Rapor Kartları
         if(netLocDays >= 182) {
-            render("✅ Şehir içi yer değişikliği hakkınız aktif.", "report-ok");
-            if(hasPuan) {
-                render(`✅ MBSTS yeterli. <a href="muktesep.html" class="muktesep-btn">Müktesep</a> uygunsa DİBBYS, değilse 18/A dilekçe verebilirsiniz.`, "report-ok");
+            render("fa-check-circle", "Şehir içi yer değişikliği hakkınız aktif.", "report-ok");
+            if(mbsts >= 50) {
+                render("fa-file-signature", `MBSTS yeterli. <a href="muktesep.html" class="muktesep-btn">Müktesep</a> uygunsa DİBBYS, değilse 18/A dilekçesi verilebilir.`, "report-ok");
             } else {
-                render("❌ MBSTS 50 altı olduğu için tercih veya dilekçe hakkı bulunmuyor.", "report-no");
+                render("fa-ban", "MBSTS 50 altı: Tercih veya dilekçe hakkı bulunmuyor.", "report-no");
             }
         } else {
-            let kalan = 182 - netLocDays;
-            render(`⏳ Şehir içi hak için ${Math.ceil(kalan)} gün daha net görev süresi gerekli.`, "report-wait");
+            render("fa-clock", `Şehir içi hakka ${Math.ceil(182 - netLocDays)} gün kaldı.`, "report-wait");
         }
 
-        // 2. Şehir Dışı (2 Yıl)
         if(netLocDays >= 730) {
-            render("✅ Mevcut ilde 2 yıl net süreniz doldu: Şehir dışı tayin açıldı.", "report-ok");
+            render("fa-map-marked-alt", "İl dışı tayin hakkınız (2 yıl) dolmuştur.", "report-ok");
         } else {
-            render(`⏳ Şehir dışı (2 yıl) hakkına ${Math.ceil(730 - netLocDays)} gün kaldı.`, "report-wait");
+            render("fa-hourglass-half", `İl dışı tayin hakkına ${Math.ceil(730 - netLocDays)} gün kaldı.`, "report-wait");
         }
 
-        // 3. 4 Yıl (Kadro/Tam Serbestlik)
         if(netDibDays >= 1460) {
-            render("🔥 4 yıl net görev süresi doldu: Tam tayin serbestliği.", "report-ok");
+            render("fa-rocket", "4 yıl net süre doldu: Kadro ve tam tayin serbestliği.", "report-ok");
         } else {
-            render(`⏳ 4 yılın (Kadro hakkı) dolmasına ${Math.ceil(1460 - netDibDays)} gün kaldı.`, "report-wait");
+            render("fa-shield-alt", `Kadro hakkına (4 yıl) ${Math.ceil(1460 - netDibDays)} gün kaldı.`, "report-wait");
         }
     }
 
-    function render(text, cls) {
+    function render(icon, text, cls) {
         const div = document.createElement('div');
         div.className = `report-item ${cls}`;
-        div.innerHTML = `<span class="fw-bold text-white">${text}</span>`;
+        div.innerHTML = `<i class="fas ${icon}"></i><span>${text}</span>`;
         document.getElementById('output').appendChild(div);
     }
 </script>
