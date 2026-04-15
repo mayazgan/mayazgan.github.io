@@ -3,133 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MAYAZGAN | Gelişmiş Mevzuat Analiz</title>
+    <title>MAYAZGAN | Profesyonel Tayin Analizi</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root { --accent: #00ff88; --bg: #0f172a; }
+        :root { --accent: #00ff88; --bg: #0a0f18; --panel: rgba(30, 41, 59, 0.8); }
         body { background: radial-gradient(circle at top right, #1e293b, var(--bg)); color: #e2e8f0; font-family: 'Inter', sans-serif; min-height: 100vh; padding: 40px 0; }
-        .glass-panel { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.1); border-radius: 30px; padding: 40px; box-shadow: 0 25px 50px rgba(0,0,0,0.5); }
-        .brand { font-family: 'Orbitron', sans-serif; letter-spacing: 8px; background: linear-gradient(to right, #00ff88, #60efff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900; }
-        .form-label { font-size: 0.7rem; font-weight: 700; color: var(--accent); letter-spacing: 1px; margin-top: 15px; }
-        .custom-input { background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 12px; padding: 10px; }
-        .custom-input:focus { border-color: var(--accent); box-shadow: 0 0 10px rgba(0,255,136,0.2); background: #0f172a; color: white; }
-        .btn-calc { background: linear-gradient(45deg, #00ff88, #00bd68); border: none; border-radius: 12px; padding: 15px; font-weight: 800; color: #0a0f18; margin-top: 25px; transition: 0.3s; }
-        .btn-calc:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,255,136,0.3); }
-        .result-card { border-radius: 15px; padding: 15px; margin-bottom: 12px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; gap: 15px; }
+        .glass-panel { background: var(--panel); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1); border-radius: 35px; padding: 45px; box-shadow: 0 30px 60px rgba(0,0,0,0.6); }
+        .brand { font-family: 'Orbitron', sans-serif; letter-spacing: 10px; background: linear-gradient(to right, #00ff88, #60efff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900; }
+        .form-label { font-size: 0.75rem; font-weight: 700; color: var(--accent); letter-spacing: 1px; margin-top: 15px; text-transform: uppercase; }
+        .custom-input { background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 14px; padding: 12px; }
+        .custom-input:focus { border-color: var(--accent); box-shadow: 0 0 15px rgba(0,255,136,0.3); background: #0f172a; color: white; }
+        .section-title { font-size: 0.85rem; color: #94a3b8; border-bottom: 1px solid #334155; padding-bottom: 5px; margin-top: 25px; font-weight: 800; }
+        .btn-mayazgan { background: linear-gradient(45deg, #00ff88, #00bd68); border: none; border-radius: 15px; padding: 18px; font-weight: 900; color: #0a0f18; margin-top: 30px; letter-spacing: 2px; }
+        .btn-mayazgan:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(0,255,136,0.4); }
+        .report-card { border-radius: 20px; padding: 20px; margin-bottom: 15px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); transition: 0.3s; }
+        .report-card:hover { background: rgba(255,255,255,0.05); }
         .status-ok { color: #00ff88; } .status-wait { color: #fbbf24; } .status-no { color: #f87171; }
-        .müktesep-link { color: #60efff; text-decoration: none; font-weight: 700; border-bottom: 1px dashed #60efff; }
+        .muktesep-link { color: #60efff; text-decoration: none; border-bottom: 1px dashed; }
     </style>
 </head>
 <body>
 
-<div class="container" style="max-width: 700px;">
-    <div class="text-center mb-4">
-        <h1 class="brand">MAYAZGAN</h1>
-        <p class="text-muted small fw-bold">PERSONEL MEVZUAT TAKİP SİSTEMİ</p>
+<div class="container" style="max-width: 800px;">
+    <div class="text-center mb-5">
+        <h1 class="brand display-5">MAYAZGAN</h1>
+        <p class="text-muted small fw-bold tracking-widest">GELİŞMİŞ TAYİN VE MEVZUAT ANALİZÖRÜ</p>
     </div>
 
-    <div class="glass-panel">
-        <div class="row">
+    <div class="glass-panel shadow-2xl">
+        <div class="row g-4">
             <div class="col-md-6">
-                <label class="form-label text-uppercase">Bulunduğunuz Yerde<br>Göreve Başlama Tarihi</label>
-                <input type="date" id="startDate" class="form-control custom-input">
+                <label class="form-label"><i class="fas fa-map-marker-alt me-2"></i>Bulunulan Yer Başlama</label>
+                <input type="date" id="locStart" class="form-control custom-input">
+                <small class="text-muted" style="font-size: 0.65rem;">Şehir içi ve il dışı tayin süreleri için.</small>
             </div>
             <div class="col-md-6">
-                <label class="form-label text-uppercase">MBSTS Puanı (Min. 50)</label>
-                <input type="number" id="mbsts" class="form-control custom-input" placeholder="Puan">
+                <label class="form-label"><i class="fas fa-mosque me-2"></i>Diyanet Görev Başlangıcı</label>
+                <input type="date" id="dibStart" class="form-control custom-input">
+                <small class="text-muted" style="font-size: 0.65rem;">3+1 Kadro ve genel haklar için.</small>
+            </div>
+
+            <div class="col-12 section-title">EK PARAMETRELER</div>
+
+            <div class="col-md-6">
+                <label class="form-label"><i class="fas fa-star me-2"></i>MBSTS Puanı</label>
+                <input type="number" id="mbsts" class="form-control custom-input" placeholder="Örn: 65">
             </div>
             
-            <div class="col-12 mt-4 p-3 rounded-4" style="background: rgba(0,0,0,0.2);">
-                <label class="form-label mt-0 text-white"><i class="fas fa-user-shield me-2"></i>ASKERLİK DURUMU (Varsa Süreden Düşülür)</label>
-                <div class="row">
-                    <div class="col-6">
-                        <label class="small text-muted">Sevk Tarihi</label>
-                        <input type="date" id="milStart" class="form-control custom-input">
-                    </div>
-                    <div class="col-6">
-                        <label class="small text-muted">Terhis Tarihi</label>
-                        <input type="date" id="milEnd" class="form-control custom-input">
-                    </div>
-                </div>
+            <div class="col-md-6">
+                <label class="form-label"><i class="fas fa-user-shield me-2"></i>Askerlik Süresi (Gün)</label>
+                <input type="number" id="milDays" class="form-control custom-input" placeholder="Düşülecek toplam gün">
             </div>
 
             <div class="col-12">
-                <button onclick="hesapla()" class="btn btn-calc w-100 shadow-lg">DETAYLI ANALİZ YAP</button>
+                <button onclick="analizEt()" class="btn btn-mayazgan w-100">HESAPLA VE RAPORLA</button>
             </div>
         </div>
 
         <div id="resultBox" class="mt-5" style="display: none;">
+            <div class="alert alert-dark border-secondary py-2 text-center small text-uppercase fw-bold mb-4" style="letter-spacing: 2px; background: #0f172a;">
+                Mevzuat Analiz Sonucu
+            </div>
             <div id="output"></div>
         </div>
     </div>
+    
+    <div class="text-center mt-4 opacity-40 small">MAYAZGAN Lab &copy; 2026 | Sivas</div>
 </div>
 
 <script>
-    function hesapla() {
-        const startVal = document.getElementById('startDate').value;
-        const milStartVal = document.getElementById('milStart').value;
-        const milEndVal = document.getElementById('milEnd').value;
+    function analizEt() {
+        const locVal = document.getElementById('locStart').value;
+        const dibVal = document.getElementById('dibStart').value;
         const score = parseInt(document.getElementById('mbsts').value) || 0;
-        
-        if(!startVal) return alert("Hocam başlangıç tarihini girmelisin.");
+        const milDays = parseInt(document.getElementById('milDays').value) || 0;
 
-        let startDate = new Date(startVal);
-        let today = new Date();
-        
-        // Net Çalışma Süresi Hesaplama
-        let rawDiff = today - startDate;
-        let militaryMs = 0;
+        if(!locVal || !dibVal) return alert("Hocam, tarihleri boş geçmeyelim.");
 
-        if(milStartVal && milEndVal) {
-            militaryMs = new Date(milEndVal) - new Date(milStartVal);
-        }
+        const today = new Date();
+        const oneDay = 1000 * 60 * 60 * 24;
 
-        let netMs = rawDiff - militaryMs;
-        let netDays = Math.ceil(netMs / (1000 * 60 * 60 * 24));
-        let netMonths = netDays / 30.44;
-        let netYears = netDays / 365;
+        // Bulunulan Yer Hesaplaması (Net)
+        let locDiff = today - new Date(locVal);
+        let netLocDays = Math.ceil(locDiff / oneDay) - milDays;
+        let netLocMonths = netLocDays / 30.44;
+        let netLocYears = netLocDays / 365;
+
+        // Diyanet Toplam Hesaplaması (Net)
+        let dibDiff = today - new Date(dibVal);
+        let netDibDays = Math.ceil(dibDiff / oneDay) - milDays;
+        let netDibYears = netDibDays / 365;
 
         document.getElementById('resultBox').style.display = 'block';
-        const output = document.getElementById('output');
-        output.innerHTML = `<p class="small text-muted mb-3 text-center">Askerlik hariç net görev süreniz: <b>${Math.floor(netDays)} gün</b></p>`;
+        const out = document.getElementById('output');
+        out.innerHTML = "";
 
         const hasPuan = score >= 50;
 
-        // 1. Şehir İçi
-        if(netMonths < 6) {
-            render("fa-times-circle", "6 aylık net görev süreniz dolmadığı için yer değişikliği yapılamaz.", "status-no");
-        } else {
-            render("fa-check-circle", "6 aylık net çalışma süresi doldu: Şehir içi nakil hakkınız mevcut.", "status-ok");
-            
+        // RAPORLAMA BAŞLIYOR
+        
+        // 1. Şehir İçi Hakkı (Bulunulan yer baz alınır)
+        if(netLocMonths >= 6) {
+            render("fa-check-double", `Şehir içi yer değişikliği hakkınız aktif. (Net yer süresi: ${Math.floor(netLocDays)} gün)`, "status-ok");
             if(hasPuan) {
-                render("fa-info-circle", `DİBBYS üzerinden başvuru için <a href="/muktesep-hesaplama" class="müktesep-link">Müktesep Puanınızı</a> kontrol edin. Müktesep tutuyorsa başvuru yapabilir, tutmuyorsa sadece 18/A-1(ç) dilekçesi verebilirsiniz.`, "status-wait");
+                render("fa-file-alt", `MBSTS (${score}) yeterli. <a href="muktesep_hesaplama.html" class="muktesep-link">Müktesep Puanınız</a> tutuyorsa DİBBYS, tutmuyorsa 18/A-1(ç) ile işlem yapabilirsiniz.`, "status-ok");
             } else {
-                render("fa-exclamation-triangle", "MBSTS puanı 50 altı: Ne DİBBYS ne de 18/A-1(ç) dilekçesi hakkınız bulunmuyor.", "status-no");
+                render("fa-ban", "MBSTS 50 altı olduğu için tercih veya 18/A dilekçesi hakkınız bulunmuyor.", "status-no");
             }
+        } else {
+            render("fa-clock", `Şehir içi nakil için ${Math.ceil(182 - netLocDays)} gün daha yerinizde kalmalısınız.`, "status-wait");
         }
 
-        // 2. Şehir Dışı (2 Yıl)
-        if(netYears >= 2) {
-            render("fa-map-marked-alt", "Mevcut ilde 2 yıllık net süreniz doldu: Şehir dışı tayin hakkı açıldı.", "status-ok");
+        // 2. Şehir Dışı (2 Yıl Kuralı - Bulunulan yer baz alınır)
+        if(netLocYears >= 2) {
+            render("fa-map-signs", "Mevcut şehirde 2 yılınız dolmuş: Şehir dışı tayin talebi hakkınız açıldı.", "status-ok");
         } else {
-            let kalan = Math.ceil((2 * 365) - netDays);
-            render("fa-hourglass-half", `Şehir dışı tayin (2 yıl şartı) için ${kalan} gün daha net görev yapmalısınız.`, "status-wait");
+            render("fa-hourglass-end", `Şehir dışı tayin hakkına (2 yıl şartı) ${Math.ceil((2*365) - netLocDays)} gün kaldı.`, "status-wait");
         }
 
-        // 3. Tam Serbestlik (4 Yıl)
-        if(netYears >= 4) {
-            render("fa-rocket", "4 yıllık net süre doldu: Şehir dışı geçişlerde tam serbestlik.", "status-ok");
+        // 3. 4 Yıl Kuralı (Diyanet Toplam baz alınır)
+        if(netDibYears >= 4) {
+            render("fa-user-check", "Diyanet'te 4 yılınız doldu: 3+1 sürecini tamamladınız, şehir dışı geçişlerde tam serbestlik.", "status-ok");
         } else {
-            let kalan4 = Math.ceil((4 * 365) - netDays);
-            render("fa-lock", `4 yılın dolmasına ${kalan4} gün kaldı (Askerlik süresi hariç).`, "status-wait");
+            render("fa-shield-alt", `Kadrolu geçiş ve tam serbestlik (4 yıl) için ${Math.ceil((4*365) - netDibDays)} gün kaldı.`, "status-wait");
         }
     }
 
     function render(icon, text, cls) {
         const div = document.createElement('div');
-        div.className = 'result-card';
+        div.className = 'report-card d-flex align-items-center gap-3';
         div.innerHTML = `<i class="fas ${icon} ${cls} fs-4"></i><div class="small fw-bold">${text}</div>`;
         document.getElementById('output').appendChild(div);
     }
