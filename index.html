@@ -162,10 +162,21 @@
       <div style="visibility: hidden" class="friv-box empty"></div>
         
     </div>
-    <br><br><style>
-    .brand-line {
+</body>
+    <footer>
+<br><br><style>
+    footer {
+    display: flex;         /* Kapsayıcıyı esnek yapar */
+    justify-content: center; /* Yatayda tam ortalar */
+    align-items: center;    /* Dikeyde tam ortalar */
+    width: 100%;           /* Tüm genişliği kaplamasını sağlar */
+    padding: 20px 0;       /* Alt-üst boşluk (isteğe bağlı) */
+}
+
+.brand-line {
     display: flex;
     align-items: center;
+    justify-content: center; /* İçerideki yazı ve logoyu birbirine göre ortalar */
     gap: 12px;
     color: var(--footer-text);
     font-size: 0.75rem;
@@ -175,11 +186,12 @@
     width: 24px;
     height: auto;
     opacity: 0.8;
-}  
+}
+
 </style>
 <div class="brand-line">
             <img src="mayazgan-logo.png" alt="Logo" class="mini-logo">
             <span>&copy; 2026 <strong>MAYAZGAN</strong> • Tüm Hakları Saklıdır</span>
 </div>
-</body>
+    </footer>
 </html>
